@@ -1,0 +1,25 @@
+  html{
+    background-color: #fae0e5;
+    text-align: center;
+    color: #3d3f6b;
+  }
+  a{
+    color: blue;
+  }
+  a:visited{
+    color: darkblue;
+  }
+  body{
+    margin: 0px 200px 0px 20su0px;
+  }
+  h1{
+    text-align: center;
+    color: blue;
+    font-size: 60px;
+  }
+  img{
+    padding-top: 40px;
+  }
+  span{
+    color: #6d6868;
+  }
