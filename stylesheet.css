@@ -1,25 +1,45 @@
-  html{
-    background-color: #fae0e5;
-    text-align: center;
-    color: #3d3f6b;
-  }
-  a{
-    color: blue;
-  }
-  a:visited{
-    color: darkblue;
-  }
-  body{
-    margin: 0px 200px 0px 20su0px;
-  }
-  h1{
-    text-align: center;
-    color: blue;
-    font-size: 60px;
-  }
-  img{
-    padding-top: 40px;
-  }
-  span{
-    color: #6d6868;
-  }
+html{
+  background-color: #fae0e5;
+  text-align: center;
+  color: #3d3f6b;
+}
+a{
+  color: blue;
+  text-decoration: none;
+}
+a:visited{
+  color: darkblue;
+}
+body{
+  margin: 0px 200px 200px 200px;
+}
+h1{
+  margin-top: 20px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 60px;
+}
+h1,h2{
+  color: blue;
+}
+img{
+  padding-top: 40px;
+}
+span{
+  color: #6d6868;
+}
+.code_block{
+  text-align: left;
+}
+.link_button{
+  background-color: blue;
+  color: white;
+  padding: 10px;
+  text-decoration: none;
+}
+.link_button:visited{
+  color: white;
+}
+.link_button:hover{
+  background-color: darkblue;
+}
