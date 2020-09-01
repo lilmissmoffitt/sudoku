@@ -19,7 +19,7 @@ h1{
   text-align: center;
   font-size: 60px;
 }
-h1,h2{
+h1, h2{
   color: blue;
 }
 img{
@@ -28,18 +28,18 @@ img{
 span{
   color: #6d6868;
 }
-.code_block{
+.code-block{
   text-align: left;
 }
-.link_button{
+.link-button{
   background-color: blue;
   color: white;
   padding: 10px;
   text-decoration: none;
 }
-.link_button:visited{
+.link-button:visited{
   color: white;
 }
-.link_button:hover{
+.link-button:hover{
   background-color: darkblue;
 }
