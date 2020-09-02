@@ -34,6 +34,8 @@ span{
 }
 table{
   border-collapse: collapse;
+  margin-left:auto;
+  margin-right:auto;
 }
 td, th{
   height: 50px;
