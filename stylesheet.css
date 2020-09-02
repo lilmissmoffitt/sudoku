@@ -11,13 +11,13 @@ a:visited{
   color: darkblue;
 }
 body{
-  margin: 0px 200px 200px 200px;
+  margin: 0 20% 20% 20%;
 }
 h1{
   margin-top: 20px;
   margin-bottom: 10px;
   text-align: center;
-  font-size: 60px;
+  font-size: 6em;
 }
 h1, h2{
   color: blue;
@@ -25,8 +25,36 @@ h1, h2{
 img{
   padding-top: 40px;
 }
+input{
+  height: 20px;
+  width: 20px;
+}
 span{
   color: #6d6868;
+}
+table{
+  border-collapse: collapse;
+}
+td, th{
+  height: 50px;
+  width: 50px;
+  border: 1px solid;
+  text-align: center;
+  vertical-align: middle;
+  display: inline-block;
+}
+tr{
+
+}
+#game{
+  width: 500px;
+  background-color: white;
+}
+#grid{
+  border: 1px solid;
+}
+.bottom-bold{
+  border-bottom: 3px solid black;
 }
 .code-block{
   text-align: left;
@@ -42,4 +70,7 @@ span{
 }
 .link-button:hover{
   background-color: darkblue;
+}
+.right-bold{
+  border-right: 3px solid black;
 }
