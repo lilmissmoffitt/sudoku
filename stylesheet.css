@@ -1,5 +1,5 @@
 html{
-  background-color: #fae0e5;
+  background-color: #9edfe5;
   text-align: center;
   color: #3d3f6b;
 }
@@ -19,8 +19,12 @@ h1{
   text-align: center;
   font-size: 6em;
 }
+h2{
+  font-size: 3em;
+}
 h1, h2{
-  color: blue;
+  color: #7e6cfb;
+  font-family: 'Quicksand', sans-serif;
 }
 img{
   padding-top: 40px;
@@ -34,22 +38,29 @@ span{
 }
 table{
   border-collapse: collapse;
-  margin-left:auto;
-  margin-right:auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 td, th{
   height: 50px;
   width: 50px;
   border: 1px solid;
   text-align: center;
-  vertical-align: middle;
-  display: inline-block;
+  font-size: 2em;
+  font-family: 'Quicksand', sans-serif;
 }
-tr{
-
+td{
+  color: blue;
+  border-color: black;
+}
+#difficulty{
+  margin-right: 35%;
+}
+#difficulty, #timer{
+  font-size: 1.2em;
 }
 #game{
-  width: 500px;
+  width: 490px;
   background-color: white;
 }
 #grid{
@@ -62,7 +73,7 @@ tr{
   text-align: left;
 }
 .link-button{
-  background-color: blue;
+  background-color: #7e6cfb;
   color: white;
   padding: 10px;
   text-decoration: none;

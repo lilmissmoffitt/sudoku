@@ -4,117 +4,119 @@
   <meta charset="utf-8">
   <title>Sudoku</title>
   <link href="stylesheet.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
   <h2>Game Grid</h2>
-<table id="game">
-  <tr>
-    <td></td>
-    <td></td>
-    <th class="right-bold">1</th>
-    <th>9</th>
-    <td></td>
-    <th class="right-bold">5</th>
-    <td></td>
-    <td></td>
-    <th>7</th>
-  </tr>
-  <tr>
-    <td></td>
-    <td></td>
-    <th class="right-bold"></th>
-    <th></th>
-    <td></td>
-    <th class="right-bold"></th>
-    <td></td>
-    <td></td>
-    <th></th>
-  </tr>
-  <tr>
-    <td class="bottom-bold"></td>
-    <td class="bottom-bold"></td>
-    <td class="right-bold bottom-bold"></td>
-    <td class="bottom-bold"></td>
-    <td class="bottom-bold"></td>
-    <td class="right-bold bottom-bold"></td>
-    <td class="bottom-bold"></td>
-    <td class="bottom-bold"></td>
-    <td class="bottom-bold"></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td></td>
-    <td class="right-bold"></td>
-    <td></td>
-    <td></td>
-    <td class="right-bold"></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
- <tr>
-    <td></td>
-    <td></td>
-    <td class="right-bold"></td>
-    <td></td>
-    <td></td>
-    <td class="right-bold"></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td class="bottom-bold"></td>
-    <td class="bottom-bold"></td>
-    <td class="right-bold bottom-bold"></td>
-    <td class="bottom-bold"></td>
-    <td class="bottom-bold"></td>
-    <td class="right-bold bottom-bold"></td>
-    <td class="bottom-bold"></td>
-    <td class="bottom-bold"></td>
-    <td class="bottom-bold"></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td></td>
-    <td class="right-bold"></td>
-    <td></td>
-    <td></td>
-    <td class="right-bold"></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td></td>
-    <td class="right-bold"></td>
-    <td></td>
-    <td></td>
-    <td class="right-bold"></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
+  <span id="difficulty">Difficulty: Easy</span><span id="timer">Timer: 1:35</span>
+  <table id="game">
+    <tr>
+      <td></td>
+      <td></td>
+      <th class="right-bold">1</th>
+      <th>9</th>
+      <td>4</td>
+      <th class="right-bold">5</th>
+      <td></td>
+      <td></td>
+      <th>7</th>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td></td>
+      <td class="right-bold"></td>
+      <td>1</td>
+      <th>3</th>
+      <th class="right-bold">8</th>
+      <td></td>
+      <th>4</th>
+      <th>9</th>
+    </tr>
+    <tr>
+      <td class="bottom-bold"></td>
+      <th class="bottom-bold">4</th>
+      <td class="right-bold bottom-bold"></td>
+      <th class="bottom-bold">2</th>
+      <th class="bottom-bold">7</th>
+      <th class="right-bold bottom-bold">6</th>
+      <th class="bottom-bold">5</th>
+      <td class="bottom-bold"></td>
+      <th class="bottom-bold">1</th>
+    </tr>
+    <tr>
+      <td></td>
+      <th>2</th>
+      <td class="right-bold"></td>
+      <td></td>
+      <td></td>
+      <td class="right-bold"></td>
+      <td></td>
+      <th>9</th>
+      <th>6</th>
+    </tr>
    <tr>
-    <td></td>
-    <td></td>
-    <td class="right-bold"></td>
-    <td></td>
-    <td></td>
-    <td class="right-bold"></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-</table>
+      <td></td>
+      <th>5</th>
+      <th class="right-bold">4</th>
+      <td></td>
+      <td></td>
+      <th class="right-bold">3</th>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th class="bottom-bold">1</th>
+      <td class="bottom-bold"></td>
+      <th class="right-bold bottom-bold">9</th>
+      <th class="bottom-bold">4</th>
+      <th class="bottom-bold">8</th>
+      <td class="right-bold bottom-bold"></td>
+      <th class="bottom-bold">7</th>
+      <td class="bottom-bold"></td>
+      <td class="bottom-bold"></td>
+    </tr>
+    <tr>
+      <td></td>
+      <th>8</th>
+      <th class="right-bold">7</th>
+      <th>5</th>
+      <td></td>
+      <td class="right-bold"></td>
+      <th>9</th>
+      <th>6</th>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <th>1</th>
+      <td class="right-bold"></td>
+      <th>8</th>
+      <td></td>
+      <th class="right-bold">9</th>
+      <td></td>
+      <th>7</th>
+      <th>4</th>
+    </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="right-bold"></td>
+      <td></td>
+      <th>6</th>
+      <td class="right-bold"></td>
+      <td></td>
+      <th>6</th>
+      <td></td>
+    </tr>
+  </table>
 
-
+  <br><br><br>
   <h2>Sample Game State</h2>
   <pre class="code-block">
     gameState: {
-      "grid": [[0, 0, 1, 9, 0, 5, 0, 0, 7],
-               [2, 0, 0, 0, 3, 8, 0, 4, 9],
+      "grid": [[0, 0, 1, 9, 4, 5, 0, 0, 7],
+               [2, 0, 0, 1, 3, 8, 0, 4, 9],
                [0, 4, 0, 2, 7, 6, 5, 0, 1],
                [0, 2, 0, 0, 0, 0, 0, 9, 6],
                [0, 5, 4, 0, 0, 3, 0, 0, 0],
