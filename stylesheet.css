@@ -75,8 +75,9 @@ td{
 .link-button{
   background-color: #7e6cfb;
   color: white;
-  padding: 10px;
+  padding: 10px 20px;
   text-decoration: none;
+  border-radius: 25px;
 }
 .link-button:visited{
   color: white;
