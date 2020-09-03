@@ -53,6 +53,12 @@ td{
   color: blue;
   border-color: black;
 }
+td:hover{
+  background-color: #ddeefe;
+}
+th:hover{
+  background-color: lightgray;
+}
 #difficulty{
   margin-right: 35%;
 }
@@ -66,6 +72,9 @@ td{
 #grid{
   border: 1px solid;
 }
+#selected-cell{
+  background-color: #bbdefb;
+}
 .bottom-bold{
   border-bottom: 3px solid black;
 }
@@ -78,6 +87,7 @@ td{
   padding: 10px 20px;
   text-decoration: none;
   border-radius: 25px;
+  font-family: 'Quicksand', sans-serif;
 }
 .link-button:visited{
   color: white;
