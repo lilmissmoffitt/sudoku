@@ -41,7 +41,7 @@ table{
   margin-left: auto;
   margin-right: auto;
 }
-td, th{
+td, .given-number{
   height: 50px;
   width: 50px;
   border: 1px solid;
@@ -56,14 +56,12 @@ td{
 td:hover{
   background-color: #ddeefe;
 }
-th:hover{
-  background-color: lightgray;
-}
 #difficulty{
   margin-right: 35%;
 }
-#difficulty, #timer{
+#difficulty, #timer, #hints, #mistakes{
   font-size: 1.2em;
+  font-family: 'Quicksand', sans-serif;
 }
 #game{
   width: 490px;
@@ -71,6 +69,9 @@ th:hover{
 }
 #grid{
   border: 1px solid;
+}
+#hints{
+  margin-right: 35%;
 }
 #selected-cell{
   background-color: #bbdefb;
@@ -80,6 +81,13 @@ th:hover{
 }
 .code-block{
   text-align: left;
+}
+.given-number{
+  font-family: 'Quicksand', sans-serif;
+  color: darkslategray;
+}
+.given-number:hover{
+  background-color: lightgray;
 }
 .link-button{
   background-color: #7e6cfb;
