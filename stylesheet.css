@@ -28,6 +28,8 @@ h1, h2{
 }
 img{
   padding-top: 40px;
+  width: 361px;
+  height: 361px;
 }
 input{
   height: 20px;
@@ -71,7 +73,7 @@ td:hover{
   border: 1px solid;
 }
 #hints{
-  margin-right: 35%;
+  margin-right: 25%;
 }
 #selected-cell{
   background-color: #bbdefb;
