@@ -43,7 +43,7 @@ function genGrid(gridDiv, row, column){
   for (i = 0; i < row; i++) {
     if ((i + 1) % 3 == 0){
       newRow = document.createElement("tr");
-      newRow.className = "bottom-bold";
+      newRow.className = "horizontal-bold";
       table.appendChild(newRow);
     } else {
       newRow = document.createElement("tr");
@@ -52,7 +52,7 @@ function genGrid(gridDiv, row, column){
     for(j = 0; j < column; j++){
       if ((j + 1) % 3 == 0 && j != 8){
         newCol = document.createElement("td");
-        newCol.className = "right-bold";
+        newCol.className = "vertical-bold";
         table.appendChild(newCol);
         } else {
           newCol = document.createElement("td");

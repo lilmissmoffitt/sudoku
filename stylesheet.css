@@ -78,9 +78,6 @@ td:hover{
 #selected-cell{
   background-color: #bbdefb;
 }
-.bottom-bold{
-  border-bottom: 3px solid black;
-}
 .code-block{
   text-align: left;
 }
@@ -90,6 +87,9 @@ td:hover{
 }
 .given-number:hover{
   background-color: lightgray;
+}
+.horizontal-bold{
+  border-bottom: 3px solid black;
 }
 .link-button{
   background-color: #7e6cfb;
@@ -105,6 +105,6 @@ td:hover{
 .link-button:hover{
   background-color: darkblue;
 }
-.right-bold{
+.vertical-bold{
   border-right: 3px solid black;
 }
