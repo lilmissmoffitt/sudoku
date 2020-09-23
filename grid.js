@@ -41,7 +41,9 @@ function genGrid(gridDiv, row, column){
   let table = document.createElement("table");
   table.setAttribute("id", "game");
   for (i = 0; i < row; i++) {
-    if ((i + 1) % 3 == 0){
+    console.log("first: " + i)
+    if ((i + 1) % 3 == 0 && i != 8){
+      console.log("second: " + i)
       newRow = document.createElement("tr");
       newRow.className = "horizontal-bold";
       table.appendChild(newRow);
