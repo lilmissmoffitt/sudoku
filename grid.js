@@ -37,7 +37,7 @@ function showGrid(){
 
 function genGrid(gridDiv, row, column){
   let newRow;
-  let newCol;
+  let newCell;
   let table = document.createElement("table");
   table.setAttribute("id", "game");
   for (i = 0; i < row; i++) {
@@ -51,12 +51,12 @@ function genGrid(gridDiv, row, column){
     }
     for(j = 0; j < column; j++){
       if ((j + 1) % 3 == 0 && j != 8){
-        newCol = document.createElement("td");
-        newCol.className = "vertical-bold";
-        newRow.appendChild(newCol);
+        newCell = document.createElement("td");
+        newCell.className = "vertical-bold";
+        newRow.appendChild(newCell);
         } else {
-          newCol = document.createElement("td");
-          newRow.appendChild(newCol);
+          newCell = document.createElement("td");
+          newRow.appendChild(newCell);
       }
     }
   }
