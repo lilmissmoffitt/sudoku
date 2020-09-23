@@ -53,10 +53,10 @@ function genGrid(gridDiv, row, column){
       if ((j + 1) % 3 == 0 && j != 8){
         newCol = document.createElement("td");
         newCol.className = "vertical-bold";
-        table.appendChild(newCol);
+        newRow.appendChild(newCol);
         } else {
           newCol = document.createElement("td");
-          table.appendChild(newCol);
+          newRow.appendChild(newCol);
       }
     }
   }
