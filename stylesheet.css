@@ -2,6 +2,7 @@ html{
   background-color: #9edfe5;
   text-align: center;
   color: #3d3f6b;
+  font-family: 'Quicksand', sans-serif;
 }
 a{
   color: blue;
@@ -24,7 +25,6 @@ h2{
 }
 h1, h2{
   color: #7e6cfb;
-  font-family: 'Quicksand', sans-serif;
 }
 img{
   padding-top: 40px;
@@ -49,7 +49,6 @@ td, .given-number{
   border: 1px solid;
   text-align: center;
   font-size: 2em;
-  font-family: 'Quicksand', sans-serif;
 }
 td{
   color: blue;
@@ -63,7 +62,14 @@ td:hover{
 }
 #difficulty, #timer, #hints, #mistakes{
   font-size: 1.2em;
-  font-family: 'Quicksand', sans-serif;
+}
+#difficulty_level {
+  width: 300px;
+  height: 50px;
+  border-radius: 25px;
+  font-size: 25px;
+  padding-left: 100px;
+  color: blue;
 }
 #game{
   width: 490px;
@@ -82,7 +88,6 @@ td:hover{
   text-align: left;
 }
 .given-number{
-  font-family: 'Quicksand', sans-serif;
   color: darkslategray;
 }
 .given-number:hover{
@@ -91,13 +96,16 @@ td:hover{
 .horizontal-bold{
   border-bottom: 3px solid black;
 }
+.label{
+  color: darkblue;
+  font-size: 30px;
+}
 .link-button{
   background-color: #7e6cfb;
   color: white;
   padding: 10px 20px;
   text-decoration: none;
   border-radius: 25px;
-  font-family: 'Quicksand', sans-serif;
 }
 .link-button:visited{
   color: white;
