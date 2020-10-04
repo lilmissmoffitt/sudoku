@@ -34,6 +34,7 @@ img{
 input{
   height: 20px;
   width: 20px;
+  text-decoration: none;
 }
 span{
   color: #6d6868;
@@ -43,7 +44,7 @@ table{
   margin-left: auto;
   margin-right: auto;
 }
-td, .given-number{
+td{
   height: 50px;
   width: 50px;
   border: 1px solid;
@@ -51,7 +52,7 @@ td, .given-number{
   font-size: 2em;
 }
 td{
-  color: blue;
+  color: slategray;
   border-color: black;
 }
 td:hover{
@@ -63,7 +64,7 @@ td:hover{
 #difficulty, #timer, #hints, #mistakes{
   font-size: 1.2em;
 }
-#difficulty_level {
+#difficulty-level {
   width: 300px;
   height: 50px;
   border-radius: 25px;
@@ -87,9 +88,6 @@ td:hover{
 .code-block{
   text-align: left;
 }
-.given-number{
-  color: darkslategray;
-}
 .given-number:hover{
   background-color: lightgray;
 }
@@ -112,6 +110,19 @@ td:hover{
 }
 .link-button:hover{
   background-color: darkblue;
+}
+.sample-body{
+  text-align: left;
+}
+.user-input{
+  height: 50px;
+  width: 50px;
+  border: none;
+  text-align: center;
+  font-size: 1em;
+  background-color: transparent;
+  font-family: 'Quicksand', sans-serif;
+  color: blue;
 }
 .vertical-bold{
   border-right: 3px solid black;

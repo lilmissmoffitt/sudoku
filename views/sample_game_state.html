@@ -7,37 +7,63 @@
     <link href="../stylesheet.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
   </head>
-  <h2>Sample Game State</h2>
-  <pre class="code-block">
-    gameState: {
-      "timer": 00:01:35,
-      "difficulty": "easy",
-      "hintsRemaining": 3,
-      "mistakesMade": 2,
-      "givenNumbers": [[0, 0, 0, 9, 0, 5, 0, 0, 7],
-                       [2, 0, 0, 0, 3, 8, 0, 4, 9],
-                       [0, 4, 0, 2, 7, 6, 5, 0, 1],
-                       [0, 2, 0, 0, 0, 0, 0, 9, 6],
-                       [0, 5, 4, 0, 0, 3, 0, 0, 0],
-                       [1, 0, 9, 4, 8, 0, 7, 0, 0],
-                       [0, 8, 7, 5, 0, 0, 9, 6, 0],
-                       [0, 1, 0, 8, 0, 9, 0, 7, 4],
-                       [0, 0, 0, 0, 6, 0, 0, 6, 0]],
-      "userNumbers":  [[0, 0, 0, 0, 4, 0, 0, 0, 0],
-                       [0, 0, 0, 1, 0, 0, 0, 0, 0],
-                       [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                       [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                       [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                       [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                       [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                       [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                       [0, 0, 0, 0, 0, 0, 0, 0, 0]],
-      "selectedCell": grid [0][6],
-      "cellBlank": true,
-      "guessCheck": null,
-      "gameOver": false
-     }
-  </pre>
-  <br>
+  <h2>Sample Preliminary Software Design</h2>
+  <body class="sample-body">
+    <pre>
+    <h3>Model</h3>
+    <h4>Constants</h4>
+    EASY_BOARD the grid containing the given numbers for the corresponding easy difficulty level.
+    MEDIUM_BOARD the grid containing the given numbers for the corresponding medium difficulty level.
+    HARD_BOARD the grid containing the given numbers for the corresponding hard difficulty level.
+
+    <h4>Objects</h4>
+    <h5>userInput</h5>
+    Each user guess object will have a selected cell and a rank property.
+    Selected call will be one of the following: grid[0-8][0-8]
+    User input will be a number 1-9.
+    User input object examples:
+    {selectedCell: [0,3], input: 7};
+    {selectedCell: [3,6], input: 1};
+    {selectedCell: [8,0], input: 4};
+
+    <h4>Functions/methods</h4>
+    setTime() : Creates a timer for the game.
+    getDifficulty() : Retrieves the difficulty level set by the player
+    checkAnswer() : Checks user input against the answer key, checking if the input is correct.
+    useHint() : Checks to see if the user has hints to use and then reveals the next cell.
+    pauseGame() : Pauses the timer and hides the game grid.
+    resumeGame() : Resumes the game. Starting the timer and revealing the board.
+
+    </pre>
+    <pre class="code-block">
+      gameState: {
+        "timer": totalSeconds,
+        "difficulty": "easy",
+        "hintsRemaining": 3,
+        "mistakesMade": 2,
+        "givenNumbers": [[0, 0, 0, 9, 0, 5, 0, 0, 7],
+                         [2, 0, 0, 0, 3, 8, 0, 4, 9],
+                         [0, 4, 0, 2, 7, 6, 5, 0, 1],
+                         [0, 2, 0, 0, 0, 0, 0, 9, 6],
+                         [0, 5, 4, 0, 0, 3, 0, 0, 0],
+                         [1, 0, 9, 4, 8, 0, 7, 0, 0],
+                         [0, 8, 7, 5, 0, 0, 9, 6, 0],
+                         [0, 1, 0, 8, 0, 9, 0, 7, 4],
+                         [0, 0, 0, 0, 6, 0, 0, 6, 0]],
+        "userNumbers":  [[0, 0, 0, 0, 4, 0, 0, 0, 0],
+                         [0, 0, 0, 1, 0, 0, 0, 0, 0],
+                         [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                         [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                         [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                         [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                         [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                         [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                         [0, 0, 0, 0, 0, 0, 0, 0, 0]],
+        "userInput": {"selectedCell": [0,4], "input": 4, "correct": true},
+        "gameOver": false
+       }
+    </pre>
+    <br>
+  </body>
   <a class="link-button" href="index.html" target="_self">Back</a>
 </html>

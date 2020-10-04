@@ -11,15 +11,17 @@
   <br>
   <body>
     <form>
-      <label for="difficulty_level" class="label">Select your difficulty level</label><br><br>
-      <select id="difficulty_level" name="difficulty_level">
+      <label for="difficulty-level" class="label">Select your difficulty level</label><br><br>
+      <select id="difficulty-level" name="difficulty-level" onchange="getDifficulty()">
         <option value="easy">Easy</option>
         <option value="medium">Medium</option>
         <option value="hard">Hard</option>
       </select>
+      <br><br>
     </form>
     <br><br><br>
     <a class="link-button" href="index.html" target="_self">Back</a>
-     <a class="link-button" href="game_grid.html" target="_self">Start Game!</a>
+     <a type="submit" id="start-game" class="link-button" href="game_grid.html" target="_self">Start Game!</a>
+     <script src="../models/game_state.js"></script>
   </body>
 </html>

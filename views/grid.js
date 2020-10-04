@@ -15,6 +15,8 @@
 //       html += "<tr>";
 //     }
 //     for(j = 0; j < column; j++){
+//      var content = getCell(i, j);
+//      console.log("row: " + i + " column: " + j + " content: " + content);
 //       if ((j + 1) % 3 == 0 && j != 8){
 //         html += "<td class='right-bold'>";
 //         html += "</td>";
@@ -38,12 +40,11 @@ function showGrid(){
 function genGrid(gridDiv, row, column){
   let newRow;
   let newCell;
+  let input;
   let table = document.createElement("table");
   table.setAttribute("id", "game");
   for (i = 0; i < row; i++) {
-    console.log("first: " + i)
     if ((i + 1) % 3 == 0 && i != 8){
-      console.log("second: " + i)
       newRow = document.createElement("tr");
       newRow.className = "horizontal-bold";
       table.appendChild(newRow);
@@ -59,6 +60,15 @@ function genGrid(gridDiv, row, column){
         } else {
           newCell = document.createElement("td");
           newRow.appendChild(newCell);
+      }
+      var content = getCell(i, j);
+      console.log("row: " + i + " column: " + j + " content: " + content);
+      if (content != 0){
+        newCell.innerHTML = content;
+      }
+      else{
+        newCell.innerHTML = "<input class='user-input selected-cell'></input>"
+
       }
     }
   }

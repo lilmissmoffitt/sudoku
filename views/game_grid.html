@@ -9,12 +9,16 @@
     <script src="grid.js"></script>
   </head>
   <body onload="showGrid()">
-    <h2>Soduku</h2>
-    <span id="difficulty">Difficulty: Easy</span><span id="timer">Timer: 1:35</span>
+    <h1>Soduku</h1>
+    <span>Difficulty:</span><span id="difficulty">Easy</span>
+    <span id="timer">Timer:</span>
+    <label id="minutes">00</label>:<label id="seconds">00</label>
+      <script src="../models/game_state.js"></script>
     <div id="gridDiv">
     </div>
     <span id="hints">Hints Remaining: 3</span><span id="mistakes">Mistakes: 2/3</span>
     <br><br><br>
     <a class="link-button" href="index.html" target="_self">Back to Home</a>
+    <a class="link-button" href="settings.html" target="_self">New Game</a>
   </body>
 </html>
