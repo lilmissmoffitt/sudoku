@@ -31,29 +31,7 @@ var hintsRemaining = 2;
 var mistakesMade = 1;
 var userInput = {selectedCell: [0,3], input: 7};
 var grid = difficultyLabel;
-
-if (document.URL.includes("game_grid.html") ) {
-  var secondsLabel = document.getElementById("seconds");
-  var minutesLabel = document.getElementById("minutes");
-  var totalSeconds = 0;
-  var timer = window.setInterval(setTime, 1500);
-
-  function setTime() {
-    ++totalSeconds;
-    secondsLabel.innerHTML = pad(totalSeconds % 60);
-    minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
-  }
-
-  function pad(val){
-    var valString = val + "";
-    if(valString.length < 2){
-      return "0" + valString;
-    }
-    else{
-      return valString;
-    }
-  }
-}
+var cells = document.getElementsByTagName("td");
 
 if (document.URL.includes("settings.html")){
  var banana = getDifficulty();

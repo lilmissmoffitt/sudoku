@@ -7,18 +7,36 @@
     <link href="../stylesheet.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
     <script src="grid.js"></script>
+    <script src="game_grid.js"></script>
   </head>
-  <body onload="showGrid()">
+
+  <body onload="hideGrid()">
     <h1>Soduku</h1>
-    <span>Difficulty:</span><span id="difficulty">Easy</span>
-    <span id="timer">Timer:</span>
-    <label id="minutes">00</label>:<label id="seconds">00</label>
-      <script src="../models/game_state.js"></script>
-    <div id="gridDiv">
+    <div id="settingsDiv">
+      <form>
+        <label for="difficulty-level" class="label">Select your difficulty level</label><br><br>
+        <select id="difficulty-level" name="difficulty-level">
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+        <br><br>
+        <br><br><br>
+      </form>
+      <a class="link-button" href="index.html" target="_self">Back</a>
+      <button onclick="hideSettings(); showGrid(); displayGrid(); startGame(); window.setInterval(setTime, 1500);"type="submit" id="start-game" class="link-button">Start Game!</button>
     </div>
-    <span id="hints">Hints Remaining: 3</span><span id="mistakes">Mistakes: 2/3</span>
-    <br><br><br>
-    <a class="link-button" href="index.html" target="_self">Back to Home</a>
-    <a class="link-button" href="settings.html" target="_self">New Game</a>
+    <div id="gameGridDiv">
+      <span>Difficulty:</span><span id="difficulty">Easy</span>
+      <span id="timer">Timer:</span>
+      <label id="minutes">00</label>:<label id="seconds">00</label>
+        <script src="../models/game_state.js"></script>
+      <div id="gridDiv">
+      </div>
+      <span id="hints">Hints Remaining: 3</span><span id="mistakes">Mistakes: 2/3</span>
+      <br><br><br>
+      <a class="link-button" href="index.html" target="_self">Back to Home</a>
+      <a class="link-button" href="game_grid.html" target="_self">New Game</a>
+    </div>
   </body>
 </html>

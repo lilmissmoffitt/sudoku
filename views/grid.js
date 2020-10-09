@@ -33,6 +33,7 @@
 
 //Using document.createElement method
 function showGrid(){
+  window.setInterval(setTime(), 1500);
   let gridDiv = document.getElementById("gridDiv");
   genGrid(gridDiv, 9, 9);
 }
@@ -62,7 +63,7 @@ function genGrid(gridDiv, row, column){
           newRow.appendChild(newCell);
       }
       var content = getCell(i, j);
-      console.log("row: " + i + " column: " + j + " content: " + content);
+      //console.log("row: " + i + " column: " + j + " content: " + content);
       if (content != 0){
         newCell.innerHTML = content;
       }
@@ -73,4 +74,20 @@ function genGrid(gridDiv, row, column){
     }
   }
   gridDiv.appendChild(table);
+}
+
+
+function hideGrid() {
+  var gameGridDiv = document.getElementById("gameGridDiv");
+  gameGridDiv.style.display = "none";
+}
+
+function displayGrid() {
+  var gameGridDiv = document.getElementById("gameGridDiv");
+  gameGridDiv.style.display = "block";
+}
+
+function hideSettings() {
+  var settingsDiv = document.getElementById("settingsDiv");
+  settingsDiv.style.display = "none";
 }

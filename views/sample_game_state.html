@@ -29,10 +29,11 @@
     <h4>Functions/methods</h4>
     setTime() : Creates a timer for the game.
     getDifficulty() : Retrieves the difficulty level set by the player
-    checkAnswer() : Checks user input against the answer key, checking if the input is correct.
+    checkAnswer(userInput) : Checks user input against the answer key, checking if the input is correct.
     useHint() : Checks to see if the user has hints to use and then reveals the next cell.
     pauseGame() : Pauses the timer and hides the game grid.
     resumeGame() : Resumes the game. Starting the timer and revealing the board.
+    gameOver() : Checks if user has hit max mistakes and presents a 'You Lost' dialog, or checks to see if the board is filled and if so presents a 'You Won' dialog with their time.
 
     </pre>
     <pre class="code-block">
@@ -41,7 +42,7 @@
         "difficulty": "easy",
         "hintsRemaining": 3,
         "mistakesMade": 2,
-        "givenNumbers": [[0, 0, 0, 9, 0, 5, 0, 0, 7],
+        "grid":         [[0, 0, 0, 9, 0, 5, 0, 0, 7],
                          [2, 0, 0, 0, 3, 8, 0, 4, 9],
                          [0, 4, 0, 2, 7, 6, 5, 0, 1],
                          [0, 2, 0, 0, 0, 0, 0, 9, 6],
