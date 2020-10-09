@@ -26,16 +26,10 @@ const HARD_BOARD  = [[0, 9, 0, 5, 0, 6, 0, 7, 0],
                     [0, 8, 0, 0, 0, 0, 0, 0, 0],
                     [4, 0, 0, 6, 3, 0, 0, 0, 0]];
 
-var difficultyLabel = EASY_BOARD;
 var hintsRemaining = 2;
 var mistakesMade = 1;
 var userInput = {selectedCell: [0,3], input: 7};
-var grid = difficultyLabel;
-var cells = document.getElementsByTagName("td");
-
-function getCell(row, col) {
-   return grid[row][col];
-}
+var grid = EASY_BOARD; // This will be set based on the set difficulty
 
 function endGame() {
   //window.clearInterval(time);

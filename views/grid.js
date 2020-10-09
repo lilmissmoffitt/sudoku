@@ -2,6 +2,11 @@
 var secondsLabel;
 var minutesLabel;
 var totalSeconds = 0;
+var cells = document.getElementsByTagName("td");
+
+function getCell(row, col) {
+   return grid[row][col];
+}
 
 //Using document.createElement method
 function showGrid(){
