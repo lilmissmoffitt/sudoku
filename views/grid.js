@@ -31,6 +31,10 @@
 //   return html;
 // }
 
+var secondsLabel;
+var minutesLabel;
+var totalSeconds = 0;
+
 //Using document.createElement method
 function showGrid(){
   window.setInterval(setTime(), 1500);
@@ -99,3 +103,23 @@ function setDifficulty() {
   difficultyText = document.getElementById("difficulty");
   difficultyText.innerHTML = selectedDifficulty;
 }
+
+function setTime() {
+  secondsLabel = document.getElementById("seconds");
+  minutesLabel = document.getElementById("minutes");
+
+  ++totalSeconds;
+  secondsLabel.innerHTML = pad(totalSeconds % 60);
+  minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
+}
+
+function pad(val){
+  var valString = val + "";
+  if(valString.length < 2){
+    return "0" + valString;
+  }
+  else{
+    return valString;
+  }
+}
+
