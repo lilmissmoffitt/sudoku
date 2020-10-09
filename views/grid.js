@@ -91,3 +91,11 @@ function hideSettings() {
   var settingsDiv = document.getElementById("settingsDiv");
   settingsDiv.style.display = "none";
 }
+
+function setDifficulty() {
+  let difficultyText;
+  var e = document.getElementById("difficulty-level");
+  var selectedDifficulty = e.options[e.selectedIndex].value;
+  difficultyText = document.getElementById("difficulty");
+  difficultyText.innerHTML = selectedDifficulty;
+}

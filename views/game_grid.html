@@ -24,10 +24,10 @@
         <br><br><br>
       </form>
       <a class="link-button" href="index.html" target="_self">Back</a>
-      <button onclick="hideSettings(); showGrid(); displayGrid(); startGame(); window.setInterval(setTime, 1500);"type="submit" id="start-game" class="link-button">Start Game!</button>
+      <button onclick="hideSettings(); showGrid(); displayGrid(); startGame(); setDifficulty(); window.setInterval(setTime, 1500);" id="start-game" class="link-button">Start Game!</button>
     </div>
     <div id="gameGridDiv">
-      <span>Difficulty:</span><span id="difficulty">Easy</span>
+      <span>Difficulty: </span><span id="difficulty"></span>
       <span id="timer">Timer:</span>
       <label id="minutes">00</label>:<label id="seconds">00</label>
         <script src="../models/game_state.js"></script>
