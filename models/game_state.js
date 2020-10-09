@@ -33,18 +33,8 @@ var userInput = {selectedCell: [0,3], input: 7};
 var grid = difficultyLabel;
 var cells = document.getElementsByTagName("td");
 
-if (document.URL.includes("settings.html")){
- var banana = getDifficulty();
-}
-
 function getCell(row, col) {
    return grid[row][col];
-}
-
-function startGame () {
-  //generate game board based on difficulty selected
-  //reset hints
-  //reset mistakes
 }
 
 function endGame() {
@@ -57,11 +47,6 @@ function pauseGame() {
 
 function resumeGame() {
   //start timer
-}
-
-function getDifficulty() {
-    var e = document.querySelector("#difficulty-level");
-    return e.options[e.selectedIndex].text;
 }
 
 function useHint() {

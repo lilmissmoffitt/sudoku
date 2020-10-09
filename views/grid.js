@@ -1,35 +1,3 @@
-//Using innerHTML method
-// function showGrid() {
-//   let gridDiv = document.getElementById("gridDiv");
-//   gridDiv.innerHTML = genGrid(9, 9);
-// }
-
-// function genGrid(row, column) {
-//   let html = "";
-
-//   html += "<table id='game'>";
-//   for (i = 0; i < row; i++) {
-//     if ((i + 1) % 3 == 0){
-//       html += "<tr class='bottom-bold'>";
-//     } else {
-//       html += "<tr>";
-//     }
-//     for(j = 0; j < column; j++){
-//      var content = getCell(i, j);
-//      console.log("row: " + i + " column: " + j + " content: " + content);
-//       if ((j + 1) % 3 == 0 && j != 8){
-//         html += "<td class='right-bold'>";
-//         html += "</td>";
-//       } else {
-//         html += "<td>";
-//         html += "</td>";
-//       }
-//     }
-//     html += "</tr>";
-//   }
-//   html += "</table>";
-//   return html;
-// }
 
 var secondsLabel;
 var minutesLabel;
@@ -80,7 +48,6 @@ function genGrid(gridDiv, row, column){
   gridDiv.appendChild(table);
 }
 
-
 function hideGrid() {
   var gameGridDiv = document.getElementById("gameGridDiv");
   gameGridDiv.style.display = "none";
@@ -122,4 +89,38 @@ function pad(val){
     return valString;
   }
 }
+
+//Using innerHTML method
+// function showGrid() {
+//   let gridDiv = document.getElementById("gridDiv");
+//   gridDiv.innerHTML = genGrid(9, 9);
+// }
+
+// function genGrid(row, column) {
+//   let html = "";
+
+//   html += "<table id='game'>";
+//   for (i = 0; i < row; i++) {
+//     if ((i + 1) % 3 == 0){
+//       html += "<tr class='bottom-bold'>";
+//     } else {
+//       html += "<tr>";
+//     }
+//     for(j = 0; j < column; j++){
+//      var content = getCell(i, j);
+//      console.log("row: " + i + " column: " + j + " content: " + content);
+//       if ((j + 1) % 3 == 0 && j != 8){
+//         html += "<td class='right-bold'>";
+//         html += "</td>";
+//       } else {
+//         html += "<td>";
+//         html += "</td>";
+//       }
+//     }
+//     html += "</tr>";
+//   }
+//   html += "</table>";
+//   return html;
+// }
+
 
