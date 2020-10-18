@@ -2,26 +2,23 @@
 var secondsLabel;
 var minutesLabel;
 var totalSeconds = 0;
-var cells = document.getElementsByTagName("td");
-
-function getCell(row, col) {
-   return grid[row][col];
-}
+var cell = document.getElementsByTagName("td");
 
 //Using document.createElement method
-function showGrid(){
+function generateGrid(){
   window.setInterval(setTime(), 1500);
   let gridDiv = document.getElementById("gridDiv");
   genGrid(gridDiv, 9, 9);
 }
 
-function genGrid(gridDiv, row, column){
+function genGrid(gridDiv, rows, columns){
   let newRow;
   let newCell;
   let input;
   let table = document.createElement("table");
   table.setAttribute("id", "game");
-  for (i = 0; i < row; i++) {
+  for (i = 0; i < rows; i++) {
+    row = i;
     if ((i + 1) % 3 == 0 && i != 8){
       newRow = document.createElement("tr");
       newRow.className = "horizontal-bold";
@@ -30,7 +27,8 @@ function genGrid(gridDiv, row, column){
       newRow = document.createElement("tr");
       table.appendChild(newRow);
     }
-    for(j = 0; j < column; j++){
+    for(j = 0; j < columns; j++){
+      column = j;
       if ((j + 1) % 3 == 0 && j != 8){
         newCell = document.createElement("td");
         newCell.className = "vertical-bold";
@@ -39,18 +37,37 @@ function genGrid(gridDiv, row, column){
           newCell = document.createElement("td");
           newRow.appendChild(newCell);
       }
+      //fill in grid table
       var content = getCell(i, j);
-      //console.log("row: " + i + " column: " + j + " content: " + content);
       if (content != 0){
         newCell.innerHTML = content;
       }
       else{
-        newCell.innerHTML = "<input class='user-input selected-cell'></input>"
-
+        newCell.innerHTML = "<input class='user-input'></input>"
       }
     }
   }
   gridDiv.appendChild(table);
+
+  for(i = 0; i < 81; i++){
+    var r = Math.floor((i / 9)) + 1;
+    var c = (i % 9) + 1;
+    cell[i].classList.add(`col-${c}`);
+    cell[i].classList.add(`row-${r}`);
+    cell[i].onclick = function() {
+      clearSelectedCells();
+      this.id = "selected-cell";
+    };
+  }
+}
+//Need to add the removal of selected cells if they click outside of the table
+//Need to add selected cell highlight if they tab into a cell
+//save user input for validation
+
+function clearSelectedCells() {
+  for(i = 0; i < 81; i++){
+  cell[i].removeAttribute("id");
+  }
 }
 
 function hideGrid() {
@@ -94,6 +111,19 @@ function pad(val){
     return valString;
   }
 }
+
+function pauseGame(minutesLabel, secondsLabel) {
+  console.log(minutesLabel +":"+ secondsLabel);
+  var cover;
+  var gameGrid = document.getElementById("game");
+  gameGrid.style.visibility = "hidden";
+}
+
+function resumeGame() {
+  var gameGrid = document.getElementById("game");
+  gameGrid.style.visibility = "visible";
+}
+
 
 //Using innerHTML method
 // function showGrid() {

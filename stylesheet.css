@@ -83,7 +83,7 @@ td:hover{
   margin-right: 25%;
 }
 #selected-cell{
-  background-color: #bbdefb;
+  background-color: #90caf9;
 }
 .code-block{
   text-align: left;
@@ -127,3 +127,4 @@ td:hover{
 .vertical-bold{
   border-right: 3px solid black;
 }
+

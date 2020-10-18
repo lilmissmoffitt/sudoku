@@ -29,14 +29,25 @@ const HARD_BOARD  = [[0, 9, 0, 5, 0, 6, 0, 7, 0],
 var hintsRemaining = 2;
 var mistakesMade = 1;
 var userInput = {selectedCell: [0,3], input: 7};
-var grid = EASY_BOARD; // This will be set based on the set difficulty
+var grid = HARD_BOARD; // This will be set based on the set difficulty
+var userGrid = EASY_BOARD; //This will be the board with the user's input
+var gameOver = gameActive(userGrid);
 
-function endGame() {
-  //window.clearInterval(time);
+function getCell(row, col) {
+  return grid[row][col];
 }
 
-function pauseGame() {
-  //stop timer
+function gameActive(userGrid) {
+  var userGrid = userGrid.flat();
+  if (userGrid.includes(0)){
+    return false;
+  }else{
+    return true;
+  }
+}
+
+function endGame(){
+
 }
 
 function resumeGame() {

@@ -12,7 +12,6 @@
   <body onload="hideGrid()">
     <h1>Soduku</h1>
     <div id="settingsDiv">
-      <form>
         <label for="difficulty-level" class="label">Select your difficulty level</label><br><br>
         <select id="difficulty-level" name="difficulty-level">
           <option value="easy">Easy</option>
@@ -21,9 +20,8 @@
         </select>
         <br><br>
         <br><br><br>
-      </form>
       <a class="link-button" href="index.html" target="_self">Back</a>
-      <button onclick="hideSettings(); showGrid(); displayGrid(); setDifficulty(); window.setInterval(setTime, 1500);" id="start-game" class="link-button">Start Game!</button>
+      <button onclick="hideSettings(); generateGrid(); displayGrid(); setDifficulty(); window.setInterval(setTime, 1500);" id="start-game" class="link-button">Start Game!</button>
     </div>
     <div id="gameGridDiv">
       <span>Difficulty: </span><span id="difficulty"></span>
@@ -35,6 +33,7 @@
       <span id="hints">Hints Remaining: 3</span><span id="mistakes">Mistakes: 2/3</span>
       <br><br><br>
       <a class="link-button" href="index.html" target="_self">Back to Home</a>
+      <a class="link-button" href="game_grid.html" target="_self">Pause Game</a>
       <a class="link-button" href="game_grid.html" target="_self">New Game</a>
     </div>
   </body>
