@@ -69,6 +69,8 @@ function genGrid(gridDiv, rows, columns){
       window.onclick = function() {
         if(event.target.localName != "input"){
           clearSelectedCells();
+          var e = document.getElementById("display-cell");
+          e.innerHTML = "n/a";
         }
       }
     };
@@ -107,12 +109,13 @@ function setDifficulty() {
 //Remove after assignment 4
 function setDisplayCell() {
   for(i = 0; i < 81; i++){
+    var e;
     if(cell[i].id == "selected-cell"){
       var r = Math.floor((i / 9)) + 1;
       var c = (i % 9) + 1;
-      var e = document.getElementById("display-cell");
+      e = document.getElementById("display-cell");
       e.innerHTML = `[${r}, ${c}]`;
-    };
+    }
   };
 }
 
