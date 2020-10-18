@@ -66,10 +66,14 @@ function genGrid(gridDiv, rows, columns){
         checkInput(this.innerText);
         setDisplayCell();
       };
+      window.onclick = function() {
+        if(event.target.localName != "input"){
+          clearSelectedCells();
+        }
+      }
     };
   }
 }
-//Need to add the removal of selected cells if they click outside of the table
 //save user input for validation
 
 function clearSelectedCells() {
