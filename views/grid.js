@@ -58,6 +58,10 @@ function genGrid(gridDiv, rows, columns){
         clearSelectedCells();
         this.setAttribute("id", "selected-cell")
       };
+      cell[i].onkeyup = function() {
+        clearSelectedCells();
+        this.setAttribute("id", "selected-cell")
+      };
     };
   }
 }
