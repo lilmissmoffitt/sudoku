@@ -41,22 +41,23 @@ function genGrid(gridDiv, rows, columns){
       var content = getCell(i, j);
       if (content != 0){
         newCell.innerHTML = content;
-      }
-      else{
-        newCell.innerHTML = "<input class='user-input'></input>"
+        newCell.classList.add("given-number");
       }
     }
   }
   gridDiv.appendChild(table);
-
+  //add event and row/column classes to each td element
   for(i = 0; i < 81; i++){
     var r = Math.floor((i / 9)) + 1;
     var c = (i % 9) + 1;
     cell[i].classList.add(`col-${c}`);
     cell[i].classList.add(`row-${r}`);
-    cell[i].onclick = function() {
-      clearSelectedCells();
-      this.id = "selected-cell";
+    if (cell[i].classList.contains("given-number") == false){
+      cell[i].innerHTML = "<input class='user-input'></input>";
+      cell[i].onclick = function() {
+        clearSelectedCells();
+        this.setAttribute("id", "selected-cell")
+      };
     };
   }
 }
