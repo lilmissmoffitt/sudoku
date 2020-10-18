@@ -57,21 +57,24 @@ function genGrid(gridDiv, rows, columns){
       cell[i].onclick = function() {
         clearSelectedCells();
         this.setAttribute("id", "selected-cell")
+        checkInput(this.innerText);
+        setDisplayCell();
       };
       cell[i].onkeyup = function() {
         clearSelectedCells();
         this.setAttribute("id", "selected-cell")
+        checkInput(this.innerText);
+        setDisplayCell();
       };
     };
   }
 }
 //Need to add the removal of selected cells if they click outside of the table
-//Need to add selected cell highlight if they tab into a cell
 //save user input for validation
 
 function clearSelectedCells() {
   for(i = 0; i < 81; i++){
-  cell[i].removeAttribute("id");
+    cell[i].removeAttribute("id");
   }
 }
 
@@ -96,6 +99,17 @@ function setDifficulty() {
   var selectedDifficulty = e.options[e.selectedIndex].value;
   difficultyText = document.getElementById("difficulty");
   difficultyText.innerHTML = selectedDifficulty;
+}
+//Remove after assignment 4
+function setDisplayCell() {
+  for(i = 0; i < 81; i++){
+    if(cell[i].id == "selected-cell"){
+      var r = Math.floor((i / 9)) + 1;
+      var c = (i % 9) + 1;
+      var e = document.getElementById("display-cell");
+      e.innerHTML = `[${r}, ${c}]`;
+    };
+  };
 }
 
 function setTime() {
