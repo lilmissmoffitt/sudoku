@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sudoku</title>
+    <link rel="icon" href="../resources/icon.png">
+    <link href="../stylesheet.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
+  </head>
+
+  <body>
+    <h2>Game Logic</h2>
+
+    <pre style="text-align: left;"><p>
+      I am dividing my game logic into 6 sections:
+
+      1. Generate game boards based on user selected difficulty.
+      2. Retrieving and validating user input.
+      3. Count mistakes made based on user input.
+      4. Provide hints to user.
+      5. Pause/Resume Game.
+      6. End of game checks.
+
+      <b>Generate game boards based on user selected difficulty</b>
+        This is done. I haven't looked ahead, but remember that there
+        was talks about generating game boards using ajax. Until then,
+        I have hard coded a game board for each difficulty level. Based
+        on the users selected difficulty the corresponding board will
+        be generated.
+
+      <b>Retrieving and validating user input</b>
+        Working on this. I have made progress setting the user-input and
+        passing it to the method to be validated. However, I am still
+        working on passing that value back and highlighting the cell red
+        if the element is invalid.
+
+      <b>Count mistakes made based on user input</b>
+        Working on this. Need to update the html value when mistakesMade
+        is updated.
+
+      <b>Provide hints to user</b>
+        Not started. This should be relatively easy to implement.
+        I will display the next cell in the answer key that isn't
+        a given-number or user-input.
+
+      <b>Pause/Resume Game</b>
+        Not started. Trying to figure out how to properly hide the
+        game board when paused, since you can currently view the td
+        values in the dev tools inspector.
+        I will also need to work on pausing and resuming the timer.
+
+      <b>End of game checks</b>
+        I have started this. I have created the check to see if there
+        are any empty cells. It returns whether the game is over or not.
+        This will need to be implemented after each user-input. I also
+        have implemented a check to see if 3 mistakes have been made.
+
+    </p></pre>
+  </body>
+  <a class="link-button" href="index.html" target="_self">Back to Home</a>
+
+</html>

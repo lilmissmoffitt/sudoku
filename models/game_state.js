@@ -16,7 +16,7 @@ const EASY_BOARD_ANSWERS =  [[3, 4, 9, 7, 2, 6, 8, 5, 1],
                             [1, 3, 2, 4, 7, 9, 6, 8, 5],
                             [5, 9, 8, 1, 6, 2, 7, 3, 4],
                             [7, 6, 4, 5, 3, 8, 2, 1, 9]];
-  const MEDIUM_BOARD =      [[0, 0, 0, 0, 6, 0, 9, 0, 0],
+const MEDIUM_BOARD =        [[0, 0, 0, 0, 6, 0, 9, 0, 0],
                             [0, 0, 0, 3, 0, 0, 0, 0, 8],
                             [0, 0, 0, 0, 0, 0, 2, 0, 5],
                             [0, 0, 9, 0, 3, 4, 0, 0, 6],
@@ -35,12 +35,11 @@ const HARD_BOARD  =         [[0, 9, 0, 5, 0, 6, 0, 7, 0],
                             [0, 8, 0, 0, 0, 0, 0, 0, 0],
                             [4, 0, 0, 6, 3, 0, 0, 0, 0]];
 
-var hintsRemaining = 2;
-var mistakesMade = 1;
-var userInput = {selectedCell: [0,3], input: 7};
-var grid = EASY_BOARD; // This will be set based on the set difficulty
-var userGrid = EASY_BOARD; //This will be the board with the user's input
-var gameOver = gameActive(userGrid);
+var hintsRemaining = 3;
+var mistakesMade = 0;
+var userGrid = grid;
+var gameOver;
+var grid;
 
 function getCell(row, col) {
   return grid[row][col];
@@ -49,14 +48,21 @@ function getCell(row, col) {
 function gameActive(userGrid) {
   var userGrid = userGrid.flat();
   if (userGrid.includes(0)){
-    return false;
-  }else{
-    return true;
+    gameOver = false;
+  } else {
+    gameOver = true;
   }
 }
 
 function endGame(){
-
+  if(gameOver == true){
+    return "Game Over";
+  } else {
+    return "Game not over";
+  }
+  if(mistakesMade == 3){
+    return "Game over";
+  }
 }
 
 function resumeGame() {
@@ -64,13 +70,33 @@ function resumeGame() {
 }
 
 function useHint() {
-  //--remainingHints
+  //--remainingHints;
 }
 
-function checkInput(userInput) {
-  //check if answer matches answer key
-  //if correct turn blue
-  //if incorrect turn red and increment mistakesMade
+function checkInput(index, userInput) {
+
+  let parsedInput = parseInt(userInput);
+
+  if(isNaN(parsedInput) == true){
+    alert("Invalid input");
+    //clear cell
+  }
+
+  return "valid";
+
+  return "invalid"
+}
+
+function setBoardDifficulty() {
+  if(difficulty == "easy"){
+    grid = EASY_BOARD;
+  };
+  if(difficulty == "medium"){
+    grid = MEDIUM_BOARD;
+  };
+  if(difficulty == "hard"){
+    grid = HARD_BOARD;
+  };
 }
 
 

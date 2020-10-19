@@ -21,7 +21,7 @@
         <br><br>
         <br><br><br>
       <a class="link-button" href="index.html" target="_self">Back</a>
-      <button onclick="hideSettings(); generateGrid(); displayGrid(); setDifficulty(); window.setInterval(setTime, 1500);" id="start-game" class="link-button">Start Game!</button>
+      <button onclick="hideSettings(); setDifficulty(); setBoardDifficulty(); generateGrid(); displayGrid(); window.setInterval(setTime, 1500);" id="start-game" class="link-button">Start Game!</button>
     </div>
     <div id="gameGridDiv">
       <span>Difficulty: </span><span id="difficulty"></span>
@@ -32,11 +32,18 @@
       </div>
       <span id="hints">Hints Remaining: 3</span><span id="mistakes">Mistakes: 2/3</span>
       <br><br><br>
-      <span style="background-color: white; font-size: 20px;">Cell Selected: </span><span style="font-size: 20px; background-color: white;"id="display-cell">n/a</span>
-      <br><br><br>
       <a class="link-button" href="index.html" target="_self">Back to Home</a>
       <a class="link-button" href="game_grid.html" target="_self">Pause Game</a>
       <a class="link-button" href="game_grid.html" target="_self">New Game</a>
+    </div>
+    <br><br><br>
+    <!-- Debugging Div -->
+    <div id="debuggingDiv" style="background-color: white; font-size: 20px;">
+      <span>&ltDEBUG&gt</span>
+      <br><br><br>
+      <span>Cell Selected: </span><span id="display-cell">n/a</span>
+      <span>Cell Value: </span><span id="display-value">n/a</span>
+      <br><br><br>
     </div>
   </body>
 </html>
