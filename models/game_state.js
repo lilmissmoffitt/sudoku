@@ -40,6 +40,7 @@ var mistakesMade = 0;
 var userGrid = grid;
 var gameOver;
 var grid;
+var isValid;
 
 function getCell(row, col) {
   return grid[row][col];
@@ -74,17 +75,15 @@ function useHint() {
 }
 
 function checkInput(index, userInput) {
-
   let parsedInput = parseInt(userInput);
-
-  if(isNaN(parsedInput) == true){
-    alert("Invalid input");
-    //clear cell
+  let answer = EASY_BOARD_ANSWERS.flat()[k];
+  if(parsedInput == answer){
+    isValid = true;
   }
-
-  return "valid";
-
-  return "invalid"
+  else{
+    isValid = false;
+    mistakesMade++;
+  }
 }
 
 function setBoardDifficulty() {

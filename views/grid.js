@@ -56,33 +56,50 @@ function genGrid(gridDiv, rows, columns){
     cell[i].classList.add(`col-${c}`);
     cell[i].classList.add(`row-${r}`);
     if (cell[i].classList.contains("given-number") == false){
-      cell[i].innerHTML = "<input type='text' class='user-input'>";
+      cell[i].innerHTML = "<input type='number' min='1' max='9' maxlength='1' class='user-input'>";
       cell[i].onclick = function() {
         clearSelectedCells();
         this.setAttribute("id", "selected-cell");
-        this.firstChild.setAttribute("id", "unvalidated-user-input");
         value = this.firstChild.value;
+        parValue = parseInt(value);
+        if(parValue > 9){
+          value = "9";
+          console.log(this);
+        }else if(parValue < 1){
+          value = "1";
+          this.firstChild.innerHTML = "1";
+        }
+        this.firstChild.setAttribute("id", "unvalidated-user-input");
         setDisplayCell();
-          this.onkeyup = function() {
-            value = this.firstChild.value;
-            setDisplayCell();
-            this.firstChild.setAttribute("value", value);
-            console.log(this.firstChild.id);
-            for(k = 0; k < 81; k++){
-              if(cell[k].firstChild.id == "unvalidated-user-input"){
-                index = k;
-                checkInput(k, value);
-              }
-              //this.firstChild.removeAttribute("id");
-              //console.log(this.firstChild.id);
-            }
+        this.onkeyup = function() {
+          value = this.firstChild.value;
+          //checks if input is 1-9
+          parValue = parseInt(value);
+          if(parValue > 9){
+            value = "9";
+          }else if(parValue < 1){
+            value = "1";
           }
+          //need these to display selected cell value in debug div
+          this.firstChild.setAttribute("value", value);
+          setDisplayCell();
+          //
+          for(k = 0; k < 81; k++){
+            if(cell[k].firstChild.id == "unvalidated-user-input"){
+              index = k;
+              checkInput(k, value);
+              this.firstChild.removeAttribute("id");
+              checkValidity(this);
+            }
+
+            console.log(this.firstChild.id);
+          }
+        }
       };
       cell[i].onkeyup = function() {
         clearSelectedCells();
         this.setAttribute("id", "selected-cell")
         setDisplayCell();
-        console.log(document.getElementById('user-input').value);
       };
       window.onclick = function() {
         if(event.target.localName != "input"){
@@ -97,7 +114,6 @@ function genGrid(gridDiv, rows, columns){
     };
   }
 }
-//save user input for validation
 
 function clearSelectedCells() {
   for(i = 0; i < 81; i++){
@@ -181,6 +197,22 @@ function resumeGame() {
   gameGrid.style.visibility = "visible";
 }
 
+function checkValidity(cellInput) {
+  if(isValid == true){
+    var cellSetValidity = cellInput.firstChild;
+    cellSetValidity.innerHTML = value;
+  } else {
+    cellInput.style.backgroundColor = '#f9b1b2';
+    cellInput.firstChild.style.color = 'red';
+  }
+}
+var m = 0;
+function changeButtonColor(){
+  var e = document.getElementById("animated-button");
+  colors = ['#f6df94', 'blue', '#edc1f6', '#e87272'];
+  e.style.backgroundColor = colors[m];
+  m = ++m % 4;
+}
 
 //Using innerHTML method
 // function showGrid() {

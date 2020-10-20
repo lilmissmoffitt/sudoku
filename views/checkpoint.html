@@ -5,6 +5,7 @@
     <link rel="icon" href="../resources/icon.png">
     <link href="../stylesheet.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
+    <script src="grid.js"></script>
   </head>
 
   <body>
@@ -29,9 +30,10 @@
 
       <b>Retrieving and validating user input</b>
         Working on this. I have made progress setting the user-input and
-        passing it to the method to be validated. However, I am still
-        working on passing that value back and highlighting the cell red
-        if the element is invalid.
+        passing it to the method to be validated. However, this is only
+        working for the easy board. I have created logic to highlight the
+        cell red if incorrect. I am still working on cleaning up the formatting
+        and validation.
 
       <b>Count mistakes made based on user input</b>
         Working on this. Need to update the html value when mistakesMade
@@ -54,8 +56,10 @@
         This will need to be implemented after each user-input. I also
         have implemented a check to see if 3 mistakes have been made.
 
+        ...and lots of clean up and refactoring :D
+
     </p></pre>
   </body>
-  <a class="link-button" href="index.html" target="_self">Back to Home</a>
-
+  <a id="animated-button" class="link-button" href="index.html" target="_self">Back to Home</a>
+  <script>setInterval(changeButtonColor, 1500);</script>
 </html>
