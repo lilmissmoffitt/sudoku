@@ -25,6 +25,15 @@ const MEDIUM_BOARD =        [[0, 0, 0, 0, 6, 0, 9, 0, 0],
                             [8, 0, 0, 9, 0, 6, 3, 0, 0],
                             [3, 0, 0, 0, 5, 1, 0, 6, 2],
                             [0, 6, 5, 0, 7, 0, 0, 1, 0]];
+const MEDIUM_BOARD_ANSWERS =[[3, 7, 2, 5, 6, 8, 9, 4, 1],
+                            [4, 5, 1, 3, 9, 2, 6, 7, 8],
+                            [6, 9, 8, 1, 4, 7, 2, 3, 5],
+                            [5, 8, 9, 7, 3, 4, 1, 2, 6],
+                            [1, 2, 3, 6, 8, 5, 4, 9, 7],
+                            [7, 4, 6, 2, 1, 9, 5, 8, 3],
+                            [8, 1, 7, 9, 2, 6, 3, 5, 4],
+                            [3, 9, 4, 8, 5, 1, 7, 6, 2],
+                            [2, 6, 5, 4, 7, 3, 8, 1, 9]];
 const HARD_BOARD  =         [[0, 9, 0, 5, 0, 6, 0, 7, 0],
                             [6, 7, 0, 0, 9, 0, 5, 0, 1],
                             [1, 0, 0, 0, 0, 7, 0, 0, 9],
@@ -37,32 +46,32 @@ const HARD_BOARD  =         [[0, 9, 0, 5, 0, 6, 0, 7, 0],
 
 var hintsRemaining = 3;
 var mistakesMade = 0;
-var userGrid = grid;
 var gameOver;
 var grid;
+var answerGrid;
 var isValid;
+var userGrid = grid;
 
 function getCell(row, col) {
   return grid[row][col];
 }
 
 function gameActive(userGrid) {
-  var userGrid = userGrid.flat();
-  if (userGrid.includes(0)){
-    gameOver = false;
-  } else {
+  if(mistakesMade >= 4){
     gameOver = true;
   }
+  // userGrid = userGrid.flat();
+  // if (userGrid.includes(0)){
+  //   gameOver = false;
+  // } else {
+  //   gameOver = true;
+  // }
 }
 
 function endGame(){
   if(gameOver == true){
-    return "Game Over";
-  } else {
-    return "Game not over";
-  }
-  if(mistakesMade == 3){
-    return "Game over";
+    hideGrid();
+    displayGameOver();
   }
 }
 
@@ -76,7 +85,7 @@ function useHint() {
 
 function checkInput(index, userInput) {
   let parsedInput = parseInt(userInput);
-  let answer = EASY_BOARD_ANSWERS.flat()[k];
+  let answer = answerGrid.flat()[k];
   if(parsedInput == answer){
     isValid = true;
   }
@@ -84,14 +93,18 @@ function checkInput(index, userInput) {
     isValid = false;
     mistakesMade++;
   }
+  gameActive();
+  endGame();
 }
 
 function setBoardDifficulty() {
   if(difficulty == "easy"){
     grid = EASY_BOARD;
+    answerGrid = EASY_BOARD_ANSWERS;
   };
   if(difficulty == "medium"){
     grid = MEDIUM_BOARD;
+    answerGrid = MEDIUM_BOARD_ANSWERS;
   };
   if(difficulty == "hard"){
     grid = HARD_BOARD;

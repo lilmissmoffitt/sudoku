@@ -9,7 +9,7 @@
     <script src="grid.js"></script>
   </head>
 
-  <body onload="hideGrid()">
+  <body onload="hideGrid(); hideGameOver();">
     <h1>Soduku</h1>
     <div id="settingsDiv">
         <label for="difficulty-level" class="label">Select your difficulty level</label><br><br>
@@ -30,11 +30,21 @@
         <script src="../models/game_state.js"></script>
       <div id="gridDiv">
       </div>
-      <span id="hints">Hints Remaining: 3</span><span id="mistakes">Mistakes: 2/3</span>
+      <span id="use-hint">?  </span><span>Hints Remaining: </span><span id="hints"></span>
+      <span >Mistakes: </span><span id="mistakes"></span><span>/3</span>
       <br><br><br>
       <a class="link-button" href="index.html" target="_self">Back to Home</a>
       <a class="link-button" href="game_grid.html" target="_self">Pause Game</a>
       <a class="link-button" href="game_grid.html" target="_self">New Game</a>
+    </div>
+    <br><br><br>
+    <!--GAME OVER DIV -->
+    <div id="game-over">
+      <br><br>
+      GAME OVER
+      <br><br>
+      <a id="animated-button" class="link-button" href="game_grid.html" target="_self">New Game</a>
+      <script>setInterval(changeButtonColor, 1500);</script>
     </div>
     <br><br><br>
     <!-- Debugging Div -->

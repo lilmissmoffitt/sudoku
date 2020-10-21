@@ -76,6 +76,13 @@ td:hover{
   width: 490px;
   background-color: white;
 }
+#game-over{
+  height: 400px;
+  background-color: #2d2e32;
+  font-size: 50px;
+  color: #7e6cfb;
+  border-radius: 10px;
+}
 #grid{
   border: 1px solid;
 }
@@ -84,6 +91,16 @@ td:hover{
 }
 #selected-cell{
   background-color: #90caf9;
+}
+#use-hint{
+  font-size: 20px;
+  color: darkblue;
+}
+#use-hint:hover{
+  font-size: 20px;
+  font-weight: bolder;
+  color: blue;
+  cursor: pointer;
 }
 .code-block{
   text-align: left;

@@ -90,6 +90,7 @@ function genGrid(gridDiv, rows, columns){
               checkInput(k, value);
               this.firstChild.removeAttribute("id");
               checkValidity(this);
+              document.getElementById("mistakes").innerHTML = mistakesMade;
             }
 
             console.log(this.firstChild.id);
@@ -133,6 +134,27 @@ function displayGrid() {
   gameGridDiv.style.display = "block";
   var debuggingDiv = document.getElementById("debuggingDiv");
   debuggingDiv.style.display = "block";
+  var hintsDisplay = document.getElementById("hints");
+  var hintIcon = document.getElementById("use-hint");
+  var mistakesDisplay = document.getElementById("mistakes");
+  hintsDisplay.innerHTML = hintsRemaining;
+  hintIcon.onclick = function() {
+    if(hintsRemaining >= 1){
+      hintsRemaining--;
+      document.getElementById("hints").innerHTML = hintsRemaining;
+    }
+  }
+  mistakesDisplay.innerHTML = mistakesMade;
+}
+
+function displayGameOver() {
+  var gameOverDiv = document.getElementById("game-over");
+  gameOverDiv.style.display = "block";
+}
+
+function hideGameOver() {
+  var gameOverDiv = document.getElementById("game-over");
+  gameOverDiv.style.display = "none";
 }
 
 function hideSettings() {
@@ -206,6 +228,7 @@ function checkValidity(cellInput) {
     cellInput.firstChild.style.color = 'red';
   }
 }
+
 var m = 0;
 function changeButtonColor(){
   var e = document.getElementById("animated-button");
