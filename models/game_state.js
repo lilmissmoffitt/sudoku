@@ -57,7 +57,7 @@ function getCell(row, col) {
 }
 
 function gameActive(userGrid) {
-  if(mistakesMade >= 4){
+  if(mistakesMade >= 3){
     gameOver = true;
   }
   // userGrid = userGrid.flat();
