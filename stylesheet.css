@@ -61,7 +61,7 @@ td:hover{
 #difficulty{
   margin-right: 35%;
 }
-#difficulty, #timer, #hints, #mistakes{
+#difficulty, #hints, #mistakes{
   font-size: 1.2em;
 }
 #difficulty-level {
@@ -101,6 +101,10 @@ td:hover{
   font-weight: bolder;
   color: blue;
   cursor: pointer;
+}
+.clock{
+  font-family: monospace;
+  font-size: 1.4em;
 }
 .code-block{
   text-align: left;
