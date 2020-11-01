@@ -5,6 +5,7 @@
     <link rel="icon" href="../resources/icon.png">
     <link href="../stylesheet.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
+    <script src="login.js"></script>
   </head>
   <div>
     <h1>Sudoku</h1>
@@ -19,6 +20,17 @@
       <a class="link-button" href="sample_game_state.html" target="_self">View Sample Game State</a>
       <a class="link-button" href="checkpoint.html" target="_self">Check Point</a>
       <a class="link-button" href="game_grid.html" target="_self">Play now!</a>
+      <br><br><br><br>
+      <input id="username" type="text" placeholder="username">
+      <br>
+      <input id="password" type="password" placeholder="password">
+      <br>
+      <button id="login">Login</button>
+      <br>
+      <span id="failed-login">Login failed. Try again later.</span>
+      <br>
+      <span id="successful-login">Successfully logged in!</span>
+      <script type="text/javascript">login();</script>
     </body>
   </div>
 </html>

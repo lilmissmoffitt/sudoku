@@ -72,6 +72,9 @@ td:hover{
   padding-left: 100px;
   color: blue;
 }
+#failed-login{
+  color: red;
+}
 #game{
   width: 490px;
   background-color: white;
@@ -89,8 +92,25 @@ td:hover{
 #hints{
   margin-right: 25%;
 }
+#login{
+  width: 100px;
+  background-color: blue;
+  color: white;
+  border-radius: 15px;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+#login:hover{
+  background-color: darkblue;
+}
+#login-message{
+  color: red;
+}
 #selected-cell{
   background-color: #90caf9;
+}
+#successful-login{
+  color: green;
 }
 #use-hint{
   font-size: 20px;
@@ -101,6 +121,10 @@ td:hover{
   font-weight: bolder;
   color: blue;
   cursor: pointer;
+}
+#username, #password{
+  width: 200px;
+  margin-bottom: 10px;
 }
 .clock{
   font-family: monospace;

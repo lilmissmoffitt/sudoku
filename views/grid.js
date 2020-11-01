@@ -92,16 +92,14 @@ function genGrid(gridDiv, rows, columns){
               checkValidity(this);
               document.getElementById("mistakes").innerHTML = mistakesMade;
             }
-
-            console.log(this.firstChild.id);
           }
         }
       };
-      cell[i].onkeyup = function() {
-        clearSelectedCells();
-        this.setAttribute("id", "selected-cell")
-        setDisplayCell();
-      };
+      // cell[i].onkeyup = function() {
+      //   clearSelectedCells();
+      //   this.setAttribute("id", "selected-cell")
+      //   setDisplayCell();
+      // };
       window.onclick = function() {
         if(event.target.localName != "input"){
           clearSelectedCells();
