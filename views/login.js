@@ -1,12 +1,9 @@
-//LOG IN HANDLERS
 const url = "http://universe.tc.uvu.edu/cs2550/assignments/PasswordCheck/check.php";
-
 var username;
 var password;
 var failedLogin;
-var successfulLogin;
 
-function login(){
+function login() {
   hideMessages();
   var loginButton = document.getElementById("login");
   loginButton.onclick = function() {
@@ -20,34 +17,38 @@ function login(){
 function loadSyncPost() {
   var usernameData = "userName=" + username;
   var passwordData = "password=" + password;
-  console.log(usernameData + "&" + passwordData);
-    var localRequest = new XMLHttpRequest();
+  var localRequest = new XMLHttpRequest();
 
-//     // PASSING false AS THE THIRD PARAMETER TO open SPECIFIES SYNCHRONOUS
     localRequest.open("POST", url, false);
     localRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     localRequest.send(usernameData + "&" + passwordData);
-
-    // NOTE THAT THE status WILL NOT BE 200 IF THE REQUEST IS FOR A
-    // LOCAL FILE.
     if (localRequest.status == 200) {
       var responseJson = JSON.parse(localRequest.responseText);
       if(responseJson["result"] == "invalid"){
         failedLogin.style.visibility = "visible";
       }
       if(responseJson["result"] == "valid"){
-        successfulLogin.style.visibility = "visible";
+        saveToLocalStorage(responseJson);
+        window.location.replace("game_grid.html");
       }
-
-//   // FOR MORE INFORMATION ABOUT JSON SEE http://json.org
-//   var responseJson = JSON.parse(localRequest.responseText);
-//   successfulLogin.innerHTML = "Your username is: " + responseJson["username"];
     }
 }
 
-function hideMessages(){
+function hideMessages() {
   failedLogin = document.getElementById("failed-login");
-  successfulLogin = document.getElementById("successful-login");
   failedLogin.style.visibility = "hidden";
-  successfulLogin.style.visibility = "hidden";
+}
+
+function saveToLocalStorage(responseJson) {
+  var usernameResponse = responseJson["userName"];
+  var timestampResponse = responseJson["timestamp"];
+  var loginInfo = usernameResponse + " " + timestampResponse;
+  localStorage.setItem('cs2550timestamp', loginInfo);
+}
+
+function clearLocalStorage() {
+  var clearLocalStorageButton = document.getElementById("clear-local-storage");
+  clearLocalStorageButton.onclick = function() {
+    localStorage.clear();
+  }
 }
