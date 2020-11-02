@@ -227,12 +227,17 @@ function checkValidity(cellInput) {
   }
 }
 
-var m = 0;
 function changeButtonColor(){
+  var m = 0;
   var e = document.getElementById("animated-button");
   colors = ['#f6df94', 'blue', '#edc1f6', '#e87272'];
   e.style.backgroundColor = colors[m];
   m = ++m % 4;
+}
+
+function displayLocalStorage() {
+  var localStorageSpan = document.getElementById("local-storage");
+  localStorageSpan.innerHTML = localStorage.getItem("cs2550timestamp");
 }
 
 //Using innerHTML method

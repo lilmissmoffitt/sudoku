@@ -40,9 +40,7 @@ function hideMessages() {
 }
 
 function saveToLocalStorage(responseJson) {
-  var usernameResponse = responseJson["userName"];
-  var timestampResponse = responseJson["timestamp"];
-  var loginInfo = usernameResponse + " " + timestampResponse;
+  var loginInfo = responseJson["userName"] + " " + responseJson["timestamp"];
   localStorage.setItem('cs2550timestamp', loginInfo);
 }
 
