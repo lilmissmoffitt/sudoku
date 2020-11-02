@@ -8,18 +8,15 @@
     <script src="login.js"></script>
   </head>
   <body>
-  <nav>
-      <input id="username" type="text" placeholder="username">
-      <input id="password" type="password" placeholder="password">
-      <button id="login">Login</button>
-      <span id="failed-login">Login failed. Try again later.</span>
-      <button id="clear-local-storage">Clear local storage</button>
-      <script type="text/javascript">login(); clearLocalStorage();</script>
-  </nav>
-  <div>
-    <hr>
-    <h1>Sudoku</h1>
-    <hr>
+    <span id="home-title">Sudoku</span>
+    <input id="username" type="text" placeholder="username">
+    <input id="password" type="password" placeholder="password">
+    <button id="login">Login</button>
+    <button id="clear-local-storage">Clear local storage</button>
+    <br>
+    <span id="failed-login">Login failed. Try again later.</span>
+    <script type="text/javascript">login(); clearLocalStorage();</script>
+    <div>
       <img src="../resources/sudoku_puzzle.png" alt="Picture of Sudoku game grid">
       <br>
       <p>
@@ -30,6 +27,6 @@
       <a class="link-button" href="checkpoint.html" target="_self">Check Point</a>
       <a class="link-button" href="game_grid.html" target="_self">Play now!</a>
       <br>
-    </body>
-  </div>
+    </div>
+  </body>
 </html>
