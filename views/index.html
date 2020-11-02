@@ -7,10 +7,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
     <script src="login.js"></script>
   </head>
+  <body>
+  <nav>
+      <input id="username" type="text" placeholder="username">
+      <input id="password" type="password" placeholder="password">
+      <button id="login">Login</button>
+      <span id="failed-login">Login failed. Try again later.</span>
+      <button id="clear-local-storage">Clear local storage</button>
+      <script type="text/javascript">login(); clearLocalStorage();</script>
+  </nav>
   <div>
+    <hr>
     <h1>Sudoku</h1>
     <hr>
-    <body>
       <img src="../resources/sudoku_puzzle.png" alt="Picture of Sudoku game grid">
       <br>
       <p>
@@ -20,17 +29,7 @@
       <a class="link-button" href="sample_game_state.html" target="_self">View Sample Game State</a>
       <a class="link-button" href="checkpoint.html" target="_self">Check Point</a>
       <a class="link-button" href="game_grid.html" target="_self">Play now!</a>
-      <br><br><br><br>
-      <input id="username" type="text" placeholder="username">
       <br>
-      <input id="password" type="password" placeholder="password">
-      <br>
-      <button id="login">Login</button>
-      <br>
-      <span id="failed-login">Login failed. Try again later.</span>
-      <br><br>
-      <button id="clear-local-storage">Clear local storage</button>
-      <script type="text/javascript">login(); clearLocalStorage();</script>
     </body>
   </div>
 </html>
