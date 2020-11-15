@@ -1,0 +1,14 @@
+myGameState = {
+  "difficulty": "easy",
+  "grid":[],
+  "userGrid":[],
+  "answerGrid":[],
+  "hintsRemaining": 2,
+  "mistakesMade": 1,
+  "gameOver": false,
+  "isValid": true
+}
+
+
+myJSON = JSON.stringify(myGameState);
+localStorage.setItem("testJSON", myJSON);

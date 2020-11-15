@@ -64,7 +64,6 @@ function genGrid(gridDiv, rows, columns){
         parValue = parseInt(value);
         if(parValue > 9){
           value = "9";
-          console.log(this);
         }else if(parValue < 1){
           value = "1";
           this.firstChild.innerHTML = "1";
@@ -206,7 +205,6 @@ function pad(val){
 }
 
 function pauseGame(minutesLabel, secondsLabel) {
-  console.log(minutesLabel +":"+ secondsLabel);
   var cover;
   var gameGrid = document.getElementById("game");
   gameGrid.style.visibility = "hidden";

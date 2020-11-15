@@ -43,14 +43,13 @@ const HARD_BOARD  =         [[0, 9, 0, 5, 0, 6, 0, 7, 0],
                             [7, 0, 0, 0, 0, 0, 1, 0, 0],
                             [0, 8, 0, 0, 0, 0, 0, 0, 0],
                             [4, 0, 0, 6, 3, 0, 0, 0, 0]];
-
+var userGrid = new Array(81).fill(0);
 var hintsRemaining = 3;
 var mistakesMade = 0;
 var gameOver;
 var grid;
 var answerGrid;
 var isValid;
-var userGrid = grid;
 
 function getCell(row, col) {
   return grid[row][col];
@@ -60,12 +59,11 @@ function gameActive(userGrid) {
   if(mistakesMade >= 3){
     gameOver = true;
   }
-  // userGrid = userGrid.flat();
-  // if (userGrid.includes(0)){
-  //   gameOver = false;
-  // } else {
-  //   gameOver = true;
-  // }
+  if (userGrid.includes(0)){
+    gameOver = false;
+  } else {
+    gameOver = true;
+  }
 }
 
 function endGame(){
@@ -88,12 +86,13 @@ function checkInput(index, userInput) {
   let answer = answerGrid.flat()[k];
   if(parsedInput == answer){
     isValid = true;
+    userGrid[index] = parsedInput;
   }
   else{
     isValid = false;
     mistakesMade++;
   }
-  gameActive();
+  gameActive(userGrid);
   endGame();
 }
 
@@ -111,4 +110,7 @@ function setBoardDifficulty() {
   };
 }
 
-
+//Retrieving data
+text = localStorage.getItem("testJSON");
+obj = JSON.parse(text);
+document.getElementByID("debuggingDiv").innerHTML = obj;
