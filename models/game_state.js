@@ -59,11 +59,11 @@ function gameActive(userGrid) {
   if(mistakesMade >= 3){
     gameOver = true;
   }
-  if (userGrid.includes(0)){
-    gameOver = false;
-  } else {
-    gameOver = true;
-  }
+  // if (userGrid.includes(0) == true){
+  //   gameOver = false;
+  // } else {
+  //   gameOver = true;
+  // }
 }
 
 function endGame(){
@@ -110,7 +110,31 @@ function setBoardDifficulty() {
   };
 }
 
-//Retrieving data
-text = localStorage.getItem("testJSON");
-obj = JSON.parse(text);
-document.getElementByID("debuggingDiv").innerHTML = obj;
+function getGameState(){
+  var request = new XMLHttpRequest();
+  request.open("GET", "../sample_game_state.json", false);
+  request.send(null);
+
+  if (request.status != 200) {
+    alert("Request failed " + request.status + ": " + request.statusText);
+    return;
+  }
+  if (request.status == 200) {
+    var responseJson = JSON.parse(request.responseText);
+    updateVariables(responseJson);
+    updateGameState(grid, userGrid);
+    gameActive(userGrid);
+    endGame();
+  }
+}
+
+function updateVariables(responseJson){
+  difficulty     = responseJson["difficulty"];
+  grid           = responseJson["grid"];
+  answerGrid     = responseJson["answerGrid"];
+  userGrid       = responseJson["userGrid"];
+  hintsRemaining = responseJson["hintsRemaining"];
+  mistakesMade   = responseJson["mistakesMade"];
+  gameOver       = responseJson["gameOver"];
+  totalSeconds   = responseJson["totalSeconds"];
+}

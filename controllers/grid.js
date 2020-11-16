@@ -9,9 +9,38 @@ var index;
 
 //Using document.createElement method
 function generateGrid(){
-  window.setInterval(setTime(), 1500);
   let gridDiv = document.getElementById("gridDiv");
   genGrid(gridDiv, 9, 9);
+}
+
+function updateGameState(grid, userGrid){
+  grid = grid.flat();
+  //clear grid
+  for(i = 0; i < 81; i++){
+    cell[i].innerHTML = '';
+  }
+  addEventAndInputFields();
+  for(i = 0; i < 81; i++){
+    if (grid[i] != 0){
+      cell[i].innerHTML = grid[i];
+      cell[i].classList.add("given-number");
+    }
+    //fill in the userGrid input
+    if (userGrid[i] != 0){
+      cell[i].innerHTML = userGrid[i];
+      cell[i].style.color = "blue";
+    }
+  }
+
+  //update difficulty
+  difficultyText = document.getElementById("difficulty");
+  difficultyText.innerHTML = difficulty;
+
+  //update hintsRemaining and mistakesMade
+  var hintsDisplay = document.getElementById("hints");
+  var mistakesDisplay = document.getElementById("mistakes");
+  hintsDisplay.innerHTML = hintsRemaining;
+  mistakesDisplay.innerHTML = mistakesMade;
 }
 
 function genGrid(gridDiv, rows, columns){
@@ -36,11 +65,11 @@ function genGrid(gridDiv, rows, columns){
         newCell = document.createElement("td");
         newCell.className = "vertical-bold";
         newRow.appendChild(newCell);
-        } else {
-          newCell = document.createElement("td");
-          newRow.appendChild(newCell);
+      } else {
+        newCell = document.createElement("td");
+        newRow.appendChild(newCell);
       }
-      //fill in grid table
+      //fill grid
       var content = getCell(i, j);
       if (content != 0){
         newCell.innerHTML = content;
@@ -50,67 +79,17 @@ function genGrid(gridDiv, rows, columns){
   }
   gridDiv.appendChild(table);
   //add event and row/column classes to each td element
-  for(i = 0; i < 81; i++){
-    var r = Math.floor((i / 9)) + 1;
-    var c = (i % 9) + 1;
-    cell[i].classList.add(`col-${c}`);
-    cell[i].classList.add(`row-${r}`);
-    if (cell[i].classList.contains("given-number") == false){
-      cell[i].innerHTML = "<input type='number' min='1' max='9' maxlength='1' class='user-input'>";
-      cell[i].onclick = function() {
-        clearSelectedCells();
-        this.setAttribute("id", "selected-cell");
-        value = this.firstChild.value;
-        parValue = parseInt(value);
-        if(parValue > 9){
-          value = "9";
-        }else if(parValue < 1){
-          value = "1";
-          this.firstChild.innerHTML = "1";
-        }
-        this.firstChild.setAttribute("id", "unvalidated-user-input");
-        setDisplayCell();
-        this.onkeyup = function() {
-          value = this.firstChild.value;
-          //checks if input is 1-9
-          parValue = parseInt(value);
-          if(parValue > 9){
-            value = "9";
-          }else if(parValue < 1){
-            value = "1";
-          }
-          //need these to display selected cell value in debug div
-          this.firstChild.setAttribute("value", value);
-          setDisplayCell();
-          //
-          for(k = 0; k < 81; k++){
-            if(cell[k].firstChild.id == "unvalidated-user-input"){
-              index = k;
-              checkInput(k, value);
-              this.firstChild.removeAttribute("id");
-              checkValidity(this);
-              document.getElementById("mistakes").innerHTML = mistakesMade;
-            }
-          }
-        }
-      };
-      // cell[i].onkeyup = function() {
-      //   clearSelectedCells();
-      //   this.setAttribute("id", "selected-cell")
-      //   setDisplayCell();
-      // };
-      window.onclick = function() {
-        if(event.target.localName != "input"){
-          clearSelectedCells();
-          //setting debug div display to n/a if cell not selected
-          var e = document.getElementById("display-cell");
-          e.innerHTML = "n/a";
-          v = document.getElementById("display-value");
-          v.innerHTML = "n/a";
-        }
-      };
-    };
-  }
+  addEventAndInputFields();
+  window.onclick = function() {
+    if(event.target.localName != "input"){
+      clearSelectedCells();
+      //setting debug div display to n/a if cell not selected
+      var e = document.getElementById("display-cell");
+      e.innerHTML = "n/a";
+      v = document.getElementById("display-value");
+      v.innerHTML = "n/a";
+    }
+  };
 }
 
 function clearSelectedCells() {
@@ -236,6 +215,60 @@ function changeButtonColor(){
 function displayLocalStorage() {
   var localStorageSpan = document.getElementById("local-storage");
   localStorageSpan.innerHTML = localStorage.getItem("cs2550timestamp");
+}
+
+function addEventAndInputFields(){
+  for(i = 0; i < 81; i++){
+    var r = Math.floor((i / 9)) + 1;
+    var c = (i % 9) + 1;
+    cell[i].classList.add(`col-${c}`);
+    cell[i].classList.add(`row-${r}`);
+    if (cell[i].classList.contains("given-number") == false){
+      cell[i].innerHTML = "<input type='number' min='1' max='9' maxlength='1' class='user-input'>";
+      cell[i].onclick = function() {
+        clearSelectedCells();
+        this.setAttribute("id", "selected-cell");
+        value = this.firstChild.value;
+        parValue = parseInt(value);
+        if(parValue > 9){
+            value = "9";
+        } else if(parValue < 1){
+          value = "1";
+          this.firstChild.innerHTML = "1";
+        }
+        this.firstChild.setAttribute("id", "unvalidated-user-input");
+        setDisplayCell();
+        this.onkeyup = function() {
+          value = this.firstChild.value;
+          //checks if input is 1-9
+          parValue = parseInt(value);
+          if(parValue > 9){
+            value = "9";
+          } else if(parValue < 1){
+            value = "1";
+          }
+          //need these to display selected cell value in debug div
+          this.firstChild.setAttribute("value", value);
+          setDisplayCell();
+          for(k = 0; k < 81; k++){
+            if(cell[k].firstChild.id == "unvalidated-user-input"){
+              index = k;
+              console.log(k,value);
+              checkInput(k, value);
+              this.firstChild.removeAttribute("id");
+              checkValidity(this);
+              document.getElementById("mistakes").innerHTML = mistakesMade;
+            }
+          }
+        }
+      };
+      // cell[i].onkeyup = function() {
+      //   clearSelectedCells();
+      //   this.setAttribute("id", "selected-cell")
+      //   setDisplayCell();
+      // };
+    };
+  }
 }
 
 //Using innerHTML method

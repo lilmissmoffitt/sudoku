@@ -6,7 +6,7 @@
     <link rel="icon" href="../resources/icon.png">
     <link href="../stylesheet.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
-    <script src="grid.js"></script>
+    <script src="../controllers/grid.js"></script>
   </head>
 
   <body onload="hideGrid(); hideGameOver();">
@@ -38,7 +38,7 @@
       <span >Mistakes: </span><span id="mistakes"></span><span>/3</span>
       <br><br><br>
       <a class="link-button" href="index.html" target="_self">Back to Home</a>
-      <a class="link-button" href="game_grid.html" target="_self">Pause Game</a>
+      <a class="link-button" target="_self" onclick="getGameState();">Load Game State</a>
       <a class="link-button" href="game_grid.html" target="_self">New Game</a>
     </div>
     <br><br><br>
