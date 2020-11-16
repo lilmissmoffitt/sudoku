@@ -7,4 +7,12 @@ Grid: You can change the numbers that will display in the grid cells, just know 
 
 answerGrid: Changing the answer grid will change whether the input of a cell is correct or not. If the userInput matches the number in the answerGrid then the cell is marked as valid.
 
-userGrid: This will be filled in upon
+userGrid: This will be filled in upon Loading the Game State. Input after the initially load will also be added to the userGrid array.
+
+hintsRemaining: Can select 0-3. This will update the total tally of hintsRemaining. I still have to build the logic around this, but in the meantime the display will update.
+
+mistakesMade: This will update the total tally of mistakesMade. If you send a number > 3 the game will immediately end upon load. Otherwise the display will update and the game will end once 3 mistakes have been made.
+
+gameOver: If this value is false, the game will end immediately upon load.
+
+totalSeconds: You can update this value (in seconds) to update the timer.
