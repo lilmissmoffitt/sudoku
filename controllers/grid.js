@@ -253,7 +253,6 @@ function addEventAndInputFields(){
           for(k = 0; k < 81; k++){
             if(cell[k].firstChild.id == "unvalidated-user-input"){
               index = k;
-              console.log(k,value);
               checkInput(k, value);
               this.firstChild.removeAttribute("id");
               checkValidity(this);

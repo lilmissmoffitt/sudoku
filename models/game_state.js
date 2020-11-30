@@ -138,3 +138,18 @@ function updateVariables(responseJson){
   gameOver       = responseJson["gameOver"];
   totalSeconds   = responseJson["totalSeconds"];
 }
+
+function getGameGrid(difficulty) {
+  var url = "https://sugoku.herokuapp.com/board";
+  var difficultyData = "?difficulty=" + difficulty;
+  var requestBoard = new XMLHttpRequest();
+  requestBoard.open("GET", url + difficultyData, false);
+  requestBoard.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  requestBoard.send();
+  console.log(requestBoard.status);
+
+  if (requestBoard.status == 200) {
+    var responseJson = JSON.parse(requestBoard.responseText);
+    grid = responseJson["board"].flat();
+  }
+}
