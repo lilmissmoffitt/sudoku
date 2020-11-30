@@ -1,48 +1,3 @@
-  const EASY_BOARD =        [[3, 4, 0, 7, 0, 6, 0, 0, 1],
-                            [8, 7, 0, 0, 0, 0, 9, 0, 6],
-                            [0, 0, 0, 8, 9, 1, 0, 0, 3],
-                            [0, 0, 0, 0, 0, 3, 5, 6, 8],
-                            [6, 8, 0, 0, 5, 4, 0, 0, 7],
-                            [9, 1, 0, 6, 0, 0, 0, 0, 0],
-                            [0, 3, 0, 4, 0, 0, 0, 8, 0],
-                            [5, 9, 0, 0, 0, 0, 7, 3, 0],
-                            [7, 0, 0, 5, 3, 8, 0, 1, 9]];
-const EASY_BOARD_ANSWERS =  [[3, 4, 9, 7, 2, 6, 8, 5, 1],
-                            [8, 7, 1, 3, 4, 5, 9, 2, 6],
-                            [2, 5, 6, 8, 9, 1, 4, 7, 3],
-                            [4, 2, 7, 9, 1, 3, 5, 6, 8],
-                            [6, 8, 3, 2, 5, 4, 1, 9, 7],
-                            [9, 1, 5, 6, 8, 7, 3, 4, 2],
-                            [1, 3, 2, 4, 7, 9, 6, 8, 5],
-                            [5, 9, 8, 1, 6, 2, 7, 3, 4],
-                            [7, 6, 4, 5, 3, 8, 2, 1, 9]];
-const MEDIUM_BOARD =        [[0, 0, 0, 0, 6, 0, 9, 0, 0],
-                            [0, 0, 0, 3, 0, 0, 0, 0, 8],
-                            [0, 0, 0, 0, 0, 0, 2, 0, 5],
-                            [0, 0, 9, 0, 3, 4, 0, 0, 6],
-                            [0, 0, 3, 0, 0, 0, 4, 0, 0],
-                            [0, 4, 0, 2, 1, 0, 0, 8, 3],
-                            [8, 0, 0, 9, 0, 6, 3, 0, 0],
-                            [3, 0, 0, 0, 5, 1, 0, 6, 2],
-                            [0, 6, 5, 0, 7, 0, 0, 1, 0]];
-const MEDIUM_BOARD_ANSWERS =[[3, 7, 2, 5, 6, 8, 9, 4, 1],
-                            [4, 5, 1, 3, 9, 2, 6, 7, 8],
-                            [6, 9, 8, 1, 4, 7, 2, 3, 5],
-                            [5, 8, 9, 7, 3, 4, 1, 2, 6],
-                            [1, 2, 3, 6, 8, 5, 4, 9, 7],
-                            [7, 4, 6, 2, 1, 9, 5, 8, 3],
-                            [8, 1, 7, 9, 2, 6, 3, 5, 4],
-                            [3, 9, 4, 8, 5, 1, 7, 6, 2],
-                            [2, 6, 5, 4, 7, 3, 8, 1, 9]];
-const HARD_BOARD  =         [[0, 9, 0, 5, 0, 6, 0, 7, 0],
-                            [6, 7, 0, 0, 9, 0, 5, 0, 1],
-                            [1, 0, 0, 0, 0, 7, 0, 0, 9],
-                            [0, 0, 0, 0, 2, 0, 0, 9, 0],
-                            [0, 0, 0, 7, 0, 4, 0, 0, 0],
-                            [0, 2, 0, 1, 0, 0, 0, 0, 7],
-                            [7, 0, 0, 0, 0, 0, 1, 0, 0],
-                            [0, 8, 0, 0, 0, 0, 0, 0, 0],
-                            [4, 0, 0, 6, 3, 0, 0, 0, 0]];
 var userGrid = new Array(81).fill(0);
 var hintsRemaining = 3;
 var mistakesMade = 0;
@@ -96,20 +51,7 @@ function checkInput(index, userInput) {
   endGame();
 }
 
-function setBoardDifficulty() {
-  if(difficulty == "easy"){
-    grid = EASY_BOARD;
-    answerGrid = EASY_BOARD_ANSWERS;
-  };
-  if(difficulty == "medium"){
-    grid = MEDIUM_BOARD;
-    answerGrid = MEDIUM_BOARD_ANSWERS;
-  };
-  if(difficulty == "hard"){
-    grid = HARD_BOARD;
-  };
-}
-
+//get saved game state
 function getGameState(){
   var request = new XMLHttpRequest();
   request.open("GET", "../sample_game_state.json", false);
@@ -128,6 +70,7 @@ function getGameState(){
   }
 }
 
+//update variables for saved state
 function updateVariables(responseJson){
   difficulty     = responseJson["difficulty"];
   grid           = responseJson["grid"];
@@ -139,6 +82,7 @@ function updateVariables(responseJson){
   totalSeconds   = responseJson["totalSeconds"];
 }
 
+//get sudoku board from https://github.com/berto/sugoku#get
 function getGameGrid(difficulty) {
   var url = "https://sugoku.herokuapp.com/board";
   var difficultyData = "?difficulty=" + difficulty;
@@ -146,10 +90,35 @@ function getGameGrid(difficulty) {
   requestBoard.open("GET", url + difficultyData, false);
   requestBoard.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   requestBoard.send();
-  console.log(requestBoard.status);
 
   if (requestBoard.status == 200) {
     var responseJson = JSON.parse(requestBoard.responseText);
-    grid = responseJson["board"].flat();
+    grid = responseJson["board"];
+    getAnswerGrid(grid);
+  }
+  else{
+    alert("Your request cannot be completed at this time. Try again later.")
   }
 }
+
+//get solved board from https://github.com/berto/sugoku
+function getAnswerGrid(grid){
+  const encodeBoard = (grid) => grid.reduce((result, row, i) => result + `%5B${encodeURIComponent(row)}%5D${i === grid.length -1 ? '' : '%2C'}`, '')
+  const encodeParams = (params) =>
+  Object.keys(params)
+  .map(key => key + '=' + `%5B${encodeBoard(params[key])}%5D`)
+  .join('&');
+  const data = {
+    board: grid
+  }
+  console.log(data);
+  fetch('https://sugoku.herokuapp.com/solve', {
+    method: 'POST',
+    body: encodeParams(data),
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+  })
+    .then(response => response.json())
+    .then(response => answerGrid = response.solution)
+    .catch(console.warn)
+}
+
