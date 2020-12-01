@@ -199,7 +199,7 @@ function checkValidity(cellInput) {
     var cellSetValidity = cellInput.firstChild;
     cellSetValidity.innerHTML = value;
   } else {
-    cellInput.backgroundColor = '#f9b1b2';
+    cellInput.style.backgroundColor = '#f9b1b2';
     cellInput.firstChild.style.color = 'red';
   }
 }
@@ -242,28 +242,28 @@ function addEventAndInputFields(){
         setDisplayCell();
         this.onkeyup = function() {
           if(event.keyCode == 8){
-            this.backgroundColor = "white";
+            this.style.backgroundColor = "white";
             this.firstChild.style.color = "blue";
-          }else{
-            value = this.firstChild.value;
-            //checks if input is 1-9
-            parValue = parseInt(value);
-            if(parValue > 9){
-              value = "9";
-            } else if(parValue < 1){
-              value = "1";
-            }
-            //need these to display selected cell value in debug div
-            this.firstChild.setAttribute("value", value);
-            setDisplayCell();
-            for(k = 0; k < 81; k++){
-              if(cell[k].firstChild.id == "unvalidated-user-input"){
-                index = k;
-                checkInput(k, value);
-                this.firstChild.removeAttribute("id");
-                checkValidity(this);
-                document.getElementById("mistakes").innerHTML = mistakesMade;
-              }
+          }
+
+          value = this.firstChild.value;
+          //checks if input is 1-9
+          parValue = parseInt(value);
+          if(parValue > 9){
+            value = "9";
+          } else if(parValue < 1){
+            value = "1";
+          }
+          //need these to display selected cell value in debug div
+          this.firstChild.setAttribute("value", value);
+          setDisplayCell();
+          for(k = 0; k < 81; k++){
+            if(cell[k].firstChild.id == "unvalidated-user-input"){
+              index = k;
+              checkInput(k, value);
+              this.firstChild.removeAttribute("id");
+              checkValidity(this);
+              document.getElementById("mistakes").innerHTML = mistakesMade;
             }
           }
         }
