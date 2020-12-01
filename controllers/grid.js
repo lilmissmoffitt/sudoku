@@ -116,7 +116,7 @@ function displayGrid() {
   hintsDisplay.innerHTML = hintsRemaining;
   hintIcon.onclick = function() {
     if(hintsRemaining >= 1){
-      hintsRemaining--;
+      useHint(hintsRemaining);
       document.getElementById("hints").innerHTML = hintsRemaining;
     }
   }
@@ -199,7 +199,7 @@ function checkValidity(cellInput) {
     var cellSetValidity = cellInput.firstChild;
     cellSetValidity.innerHTML = value;
   } else {
-    cellInput.style.backgroundColor = '#f9b1b2';
+    cellInput.backgroundColor = '#f9b1b2';
     cellInput.firstChild.style.color = 'red';
   }
 }
@@ -226,11 +226,13 @@ function addEventAndInputFields(){
     if (cell[i].classList.contains("given-number") == false){
       cell[i].innerHTML = "<input type='number' min='1' max='9' maxlength='1' class='user-input'>";
       cell[i].onclick = function() {
+        //allows selected cell to be cleared if you click out of it
         clearSelectedCells();
         this.setAttribute("id", "selected-cell");
         value = this.firstChild.value;
         parValue = parseInt(value);
         if(parValue > 9){
+          alert(parValue);
             value = "9";
         } else if(parValue < 1){
           value = "1";
@@ -239,24 +241,29 @@ function addEventAndInputFields(){
         this.firstChild.setAttribute("id", "unvalidated-user-input");
         setDisplayCell();
         this.onkeyup = function() {
-          value = this.firstChild.value;
-          //checks if input is 1-9
-          parValue = parseInt(value);
-          if(parValue > 9){
-            value = "9";
-          } else if(parValue < 1){
-            value = "1";
-          }
-          //need these to display selected cell value in debug div
-          this.firstChild.setAttribute("value", value);
-          setDisplayCell();
-          for(k = 0; k < 81; k++){
-            if(cell[k].firstChild.id == "unvalidated-user-input"){
-              index = k;
-              checkInput(k, value);
-              this.firstChild.removeAttribute("id");
-              checkValidity(this);
-              document.getElementById("mistakes").innerHTML = mistakesMade;
+          if(event.keyCode == 8){
+            this.backgroundColor = "white";
+            this.firstChild.style.color = "blue";
+          }else{
+            value = this.firstChild.value;
+            //checks if input is 1-9
+            parValue = parseInt(value);
+            if(parValue > 9){
+              value = "9";
+            } else if(parValue < 1){
+              value = "1";
+            }
+            //need these to display selected cell value in debug div
+            this.firstChild.setAttribute("value", value);
+            setDisplayCell();
+            for(k = 0; k < 81; k++){
+              if(cell[k].firstChild.id == "unvalidated-user-input"){
+                index = k;
+                checkInput(k, value);
+                this.firstChild.removeAttribute("id");
+                checkValidity(this);
+                document.getElementById("mistakes").innerHTML = mistakesMade;
+              }
             }
           }
         }

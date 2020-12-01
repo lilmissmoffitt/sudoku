@@ -1,24 +1,26 @@
-var userGrid = new Array(81).fill(0);
 var hintsRemaining = 3;
 var mistakesMade = 0;
 var gameOver;
 var grid;
 var answerGrid;
+var userGrid;
 var isValid;
+var solved;
 
 function getCell(row, col) {
   return grid[row][col];
 }
 
-function gameActive(userGrid) {
+function gameActive() {
   if(mistakesMade >= 3){
     gameOver = true;
   }
-  // if (userGrid.includes(0) == true){
-  //   gameOver = false;
-  // } else {
-  //   gameOver = true;
-  // }
+  if (userGrid.flat().includes(0) == true){
+    gameOver = false;
+  } else {
+    gameOver = true;
+    solved = true;
+  }
 }
 
 function endGame(){
@@ -33,7 +35,20 @@ function resumeGame() {
 }
 
 function useHint() {
-  //--remainingHints;
+  hintsRemaining--;
+  setNextInput();
+}
+
+function setNextInput(){
+  var nextInput;
+  var flatAnswerGrid = answerGrid.flat();
+  for(i = 0; i < flatAnswerGrid.length; i++){
+    if (userGrid[i] != 0) {
+      nextInput = flatAnswerGrid[i];
+      break;
+    }
+  }
+  return nextInput;
 }
 
 function checkInput(index, userInput) {
@@ -47,11 +62,11 @@ function checkInput(index, userInput) {
     isValid = false;
     mistakesMade++;
   }
-  gameActive(userGrid);
+  gameActive();
   endGame();
 }
 
-//get saved game state
+//get saved game state from sample_game_state.json
 function getGameState(){
   var request = new XMLHttpRequest();
   request.open("GET", "../sample_game_state.json", false);
@@ -120,5 +135,6 @@ function getAnswerGrid(grid){
     .then(response => response.json())
     .then(response => answerGrid = response.solution)
     .catch(console.warn)
+    userGrid = grid.flat();
 }
 
