@@ -159,6 +159,9 @@ td:hover{
 .horizontal-bold{
   border-bottom: 3px solid black;
 }
+.invalid{
+  background-color: #f9b1b2;
+}
 .label{
   color: darkblue;
   font-size: 30px;

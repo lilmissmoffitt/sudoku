@@ -199,7 +199,7 @@ function checkValidity(cellInput) {
     var cellSetValidity = cellInput.firstChild;
     cellSetValidity.innerHTML = value;
   } else {
-    cellInput.style.backgroundColor = '#f9b1b2';
+    cellInput.classList.add("invalid");
     cellInput.firstChild.style.color = 'red';
   }
 }
@@ -245,7 +245,6 @@ function addEventAndInputFields(){
             this.style.backgroundColor = "white";
             this.firstChild.style.color = "blue";
           }
-
           value = this.firstChild.value;
           //checks if input is 1-9
           parValue = parseInt(value);
@@ -253,6 +252,8 @@ function addEventAndInputFields(){
             value = "9";
           } else if(parValue < 1){
             value = "1";
+          } else{
+            value;
           }
           //need these to display selected cell value in debug div
           this.firstChild.setAttribute("value", value);
@@ -261,8 +262,8 @@ function addEventAndInputFields(){
             if(cell[k].firstChild.id == "unvalidated-user-input"){
               index = k;
               checkInput(k, value);
-              this.firstChild.removeAttribute("id");
               checkValidity(this);
+              this.firstChild.removeAttribute("id");
               document.getElementById("mistakes").innerHTML = mistakesMade;
             }
           }

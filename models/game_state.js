@@ -1,26 +1,27 @@
 var hintsRemaining = 3;
 var mistakesMade = 0;
-var gameOver;
 var grid;
 var answerGrid;
 var userGrid;
 var isValid;
 var solved;
+var gameOver;
 
 function getCell(row, col) {
   return grid[row][col];
 }
 
 function gameActive() {
-  if(mistakesMade >= 3){
-    gameOver = true;
-  }
   if (userGrid.flat().includes(0) == true){
     gameOver = false;
   } else {
     gameOver = true;
-    solved = true;
+    //solved = true;
   }
+    if(mistakesMade >= 3){
+    gameOver = true;
+  }
+  endGame();
 }
 
 function endGame(){
