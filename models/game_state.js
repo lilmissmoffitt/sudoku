@@ -7,21 +7,21 @@ var isValid;
 var solved;
 var gameOver;
 
-function getCell(row, col) {
+function getCell(row, col){
   return grid[row][col];
 }
 
-function gameActive() {
-  if (userGrid.flat().includes(0) == true){
+function gameActive(){
+
+  if (userGrid.includes(0) == true){
     gameOver = false;
-  } else {
+  }else{
     gameOver = true;
     //solved = true;
   }
-    if(mistakesMade >= 3){
+  if(mistakesMade >= 3){
     gameOver = true;
   }
-  endGame();
 }
 
 function endGame(){
@@ -31,11 +31,11 @@ function endGame(){
   }
 }
 
-function resumeGame() {
+function resumeGame(){
   //start timer
 }
 
-function useHint() {
+function useHint(){
   hintsRemaining--;
   setNextInput();
 }
@@ -52,14 +52,15 @@ function setNextInput(){
   return nextInput;
 }
 
-function checkInput(index, userInput) {
-  let parsedInput = parseInt(userInput);
-  let answer = answerGrid.flat()[k];
-  if(parsedInput == answer){
-    isValid = true;
-    userGrid[index] = parsedInput;
+function checkInput(index, userInput){
+  var answer = answerGrid.flat()[index];
+  if(userInput > 9 || userInput < 1){
+    isValid = false;
   }
-  else{
+  if(userInput == answer){
+    isValid = true;
+    userGrid[index] = answer;
+  }else{
     isValid = false;
     mistakesMade++;
   }
@@ -73,11 +74,11 @@ function getGameState(){
   request.open("GET", "../sample_game_state.json", false);
   request.send(null);
 
-  if (request.status != 200) {
+  if(request.status != 200){
     alert("Request failed " + request.status + ": " + request.statusText);
     return;
   }
-  if (request.status == 200) {
+  if (request.status == 200){
     var responseJson = JSON.parse(request.responseText);
     updateVariables(responseJson);
     updateGameState(grid, userGrid);
@@ -99,7 +100,7 @@ function updateVariables(responseJson){
 }
 
 //get sudoku board from https://github.com/berto/sugoku#get
-function getGameGrid(difficulty) {
+function getGameGrid(difficulty){
   var url = "https://sugoku.herokuapp.com/board";
   var difficultyData = "?difficulty=" + difficulty;
   var requestBoard = new XMLHttpRequest();
@@ -107,12 +108,11 @@ function getGameGrid(difficulty) {
   requestBoard.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   requestBoard.send();
 
-  if (requestBoard.status == 200) {
+  if(requestBoard.status == 200){
     var responseJson = JSON.parse(requestBoard.responseText);
     grid = responseJson["board"];
     getAnswerGrid(grid);
-  }
-  else{
+  }else{
     alert("Your request cannot be completed at this time. Try again later.")
   }
 }
@@ -127,7 +127,6 @@ function getAnswerGrid(grid){
   const data = {
     board: grid
   }
-  console.log(data);
   fetch('https://sugoku.herokuapp.com/solve', {
     method: 'POST',
     body: encodeParams(data),

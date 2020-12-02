@@ -159,8 +159,18 @@ td:hover{
 .horizontal-bold{
   border-bottom: 3px solid black;
 }
-.invalid{
+.invalid-background{
   background-color: #f9b1b2;
+}
+.invalid-text{
+  height: 50px;
+  width: 50px;
+  border: none;
+  text-align: center;
+  font-size: 1em;
+  background-color: transparent;
+  font-family: 'Quicksand', sans-serif;
+  color: red;
 }
 .label{
   color: darkblue;

@@ -94,7 +94,9 @@ function genGrid(gridDiv, rows, columns){
 
 function clearSelectedCells() {
   for(i = 0; i < 81; i++){
+    if(cell[i].id == "selected-cell"){
     cell[i].removeAttribute("id");
+    }
   }
 }
 
@@ -149,20 +151,20 @@ function setDifficulty() {
   return selectedDifficulty;
 }
 //Remove after assignment 4
-function setDisplayCell() {
-  for(i = 0; i < 81; i++){
-    var e;
-    var v;
-    if(cell[i].id == "selected-cell"){
-      var r = Math.floor((i / 9)) + 1;
-      var c = (i % 9) + 1;
-      e = document.getElementById("display-cell");
-      e.innerHTML = `[${r}, ${c}]`;
-      v = document.getElementById("display-value");
-      v.innerHTML = value;
-    }
-  };
-}
+// function setDisplayCell(value) {
+//   for(i = 0; i < 81; i++){
+//     var e;
+//     var v;
+//     if(cell[i].id == "selected-cell"){
+//       var r = Math.floor((i / 9)) + 1;
+//       var c = (i % 9) + 1;
+//       e = document.getElementById("display-cell");
+//       e.innerHTML = `[${r}, ${c}]`;
+//       v = document.getElementById("display-value");
+//       v.innerHTML = value;
+//     }
+//   };
+// }
 
 function setTime() {
   secondsLabel = document.getElementById("seconds");
@@ -196,11 +198,11 @@ function resumeGame() {
 
 function checkValidity(cellInput) {
   if(isValid == true){
-    var cellSetValidity = cellInput.firstChild;
-    cellSetValidity.innerHTML = value;
+    cellInput.firstChild.innerHTML = value;
   } else {
-    cellInput.classList.add("invalid");
-    cellInput.firstChild.style.color = 'red';
+    cellInput.classList.add("invalid-background");
+    cellInput.firstChild.classList.remove("user-input");
+    cellInput.firstChild.classList.add("invalid-text");
   }
 }
 
@@ -226,38 +228,37 @@ function addEventAndInputFields(){
     if (cell[i].classList.contains("given-number") == false){
       cell[i].innerHTML = "<input type='number' min='1' max='9' maxlength='1' class='user-input'>";
       cell[i].onclick = function() {
+        var displayValue;
         //allows selected cell to be cleared if you click out of it
         clearSelectedCells();
         this.setAttribute("id", "selected-cell");
-        value = this.firstChild.value;
-        parValue = parseInt(value);
-        if(parValue > 9){
-          alert(parValue);
-            value = "9";
-        } else if(parValue < 1){
-          value = "1";
-          this.firstChild.innerHTML = "1";
+        //displayValue = this.firstChild.value;
+        // parValue = parseInt(value);
+        // if(parValue > 9){
+        //   alert(parValue);
+        //     value = "9";
+        // } else if(parValue < 1){
+        //   value = "1";
+        //   this.firstChild.innerHTML = "1";
+        // }
+        // this.firstChild.setAttribute("id", "unvalidated-user-input");
+        // setDisplayCell();
+      }
+      cell[i].onkeyup = function() {
+        if(event.keyCode == 8){
+          this.classList.remove("invalid-background");
+          this.firstChild.classList.remove("invalid-text");
+          if(this.classList.contains("user-input") == false){
+            this.firstChild.classList.add("user-input");
+          }
         }
-        this.firstChild.setAttribute("id", "unvalidated-user-input");
-        setDisplayCell();
-        this.onkeyup = function() {
-          if(event.keyCode == 8){
-            this.style.backgroundColor = "white";
-            this.firstChild.style.color = "blue";
-          }
+        else{
+          let value;
           value = this.firstChild.value;
-          //checks if input is 1-9
-          parValue = parseInt(value);
-          if(parValue > 9){
-            value = "9";
-          } else if(parValue < 1){
-            value = "1";
-          } else{
-            value;
-          }
           //need these to display selected cell value in debug div
-          this.firstChild.setAttribute("value", value);
-          setDisplayCell();
+          //this.firstChild.setAttribute("value", value);
+          //setDisplayCell(value);
+          this.firstChild.id = "unvalidated-user-input";
           for(k = 0; k < 81; k++){
             if(cell[k].firstChild.id == "unvalidated-user-input"){
               index = k;
