@@ -40,12 +40,12 @@ function hideMessages() {
 }
 
 function saveToLocalStorage(responseJson) {
-  var loginInfo = responseJson["userName"] + " " + responseJson["timestamp"];
+  let loginInfo = responseJson["userName"] + " " + responseJson["timestamp"];
   localStorage.setItem('cs2550timestamp', loginInfo);
 }
 
 function clearLocalStorage() {
-  var clearLocalStorageButton = document.getElementById("clear-local-storage");
+  let clearLocalStorageButton = document.getElementById("clear-local-storage");
   clearLocalStorageButton.onclick = function() {
     localStorage.clear();
   }

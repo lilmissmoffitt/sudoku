@@ -38,25 +38,31 @@
       <span >Mistakes: </span><span id="mistakes"></span><span>/3</span>
       <br><br><br>
       <a class="link-button" href="index.html" target="_self">Back to Home</a>
-      <a class="link-button" target="_self" onclick="getGameState();">Pause Game</a>
+      <a class="link-button" target="_self" onclick="pauseGame();">Pause Game</a>
       <a class="link-button" href="game_grid.html" target="_self">New Game</a>
     </div>
     <br><br><br>
+    <!-- PAUSE SCREEN -->
+    <div id="pauseScreenDiv">
+      <a class="link-button" target="_self" onclick="resumeGame();">Resume</a>
+    </div>
     <!--GAME OVER DIV -->
     <div id="game-over">
       <br><br>
-      GAME OVER
-      <br><br>
-      <a id="animated-button" class="link-button" href="game_grid.html" target="_self">New Game</a>
-      <script>setInterval(changeButtonColor, 1500);</script>
+      <span id="win-or-lose"></span>
+      <span id='end-time'></span>
+      <br>
+      <a class="link-button" href="game_grid.html" target="_self">New Game</a>
     </div>
     <br><br><br>
     <!-- Debugging Div -->
     <div id="debuggingDiv" style="background-color: white; font-size: 20px;">
       <span>&ltDEBUG&gt</span>
       <br><br><br>
-      <span>Cell Selected: </span><span id="display-cell">n/a</span>
-      <span>Cell Value: </span><span id="display-value">n/a</span>
+      <span>Answer Key: </span><br>
+      <span id="display-answer-key"></span>
+      <br>
+      <a class="link-button" target="_self" onclick="setDisplayCell();">Get Answers</a>
       <br><br><br>
     </div>
   </body>

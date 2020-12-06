@@ -83,11 +83,6 @@ function genGrid(gridDiv, rows, columns){
   window.onclick = function() {
     if(event.target.localName != "input"){
       clearSelectedCells();
-      //setting debug div display to n/a if cell not selected
-      var e = document.getElementById("display-cell");
-      e.innerHTML = "n/a";
-      v = document.getElementById("display-value");
-      v.innerHTML = "n/a";
     }
   };
 }
@@ -103,8 +98,10 @@ function clearSelectedCells() {
 function hideGrid() {
   var gameGridDiv = document.getElementById("gameGridDiv");
   gameGridDiv.style.display = "none";
-    var debuggingDiv = document.getElementById("debuggingDiv");
+  var debuggingDiv = document.getElementById("debuggingDiv");
   debuggingDiv.style.display = "none";
+  var pauseGameDiv = document.getElementById("pauseScreenDiv");
+  pauseGameDiv.style.display = "none";
 }
 
 function displayGrid() {
@@ -118,7 +115,13 @@ function displayGrid() {
   hintsDisplay.innerHTML = hintsRemaining;
   hintIcon.onclick = function() {
     if(hintsRemaining >= 1){
-      useHint(hintsRemaining);
+      let nextInputDetails = useHint();
+      let parsedNextInputDetails = nextInputDetails.split(":");
+      let nextIndex = nextInputDetails[0];
+      let nextInput = nextInputDetails[2];
+      cell[nextIndex].classList.add("blue-text");
+      cell[nextIndex].innerHTML = nextInput;
+      console.log(cell[nextIndex].className);
       document.getElementById("hints").innerHTML = hintsRemaining;
     }
   }
@@ -150,21 +153,6 @@ function setDifficulty() {
   window.difficulty = selectedDifficulty;
   return selectedDifficulty;
 }
-//Remove after assignment 4
-// function setDisplayCell(value) {
-//   for(i = 0; i < 81; i++){
-//     var e;
-//     var v;
-//     if(cell[i].id == "selected-cell"){
-//       var r = Math.floor((i / 9)) + 1;
-//       var c = (i % 9) + 1;
-//       e = document.getElementById("display-cell");
-//       e.innerHTML = `[${r}, ${c}]`;
-//       v = document.getElementById("display-value");
-//       v.innerHTML = value;
-//     }
-//   };
-// }
 
 function setTime() {
   secondsLabel = document.getElementById("seconds");
@@ -185,21 +173,19 @@ function pad(val){
   }
 }
 
-function pauseGame(minutesLabel, secondsLabel) {
-  var cover;
-  var gameGrid = document.getElementById("game");
-  gameGrid.style.visibility = "hidden";
+function pauseGame() {
+  hideGrid();
+  document.getElementById("pauseScreenDiv").style.display = "block";
+  localStorage.setItem('savedTime', totalSeconds);
 }
 
 function resumeGame() {
-  var gameGrid = document.getElementById("game");
-  gameGrid.style.visibility = "visible";
+  totalSeconds = localStorage.getItem("savedTime");
+  displayGrid();
 }
 
 function checkValidity(cellInput) {
-  if(isValid == true){
-    cellInput.firstChild.innerHTML = value;
-  } else {
+  if(isValid == false){
     cellInput.classList.add("invalid-background");
     cellInput.firstChild.classList.remove("user-input");
     cellInput.firstChild.classList.add("invalid-text");
@@ -232,7 +218,6 @@ function addEventAndInputFields(){
         //allows selected cell to be cleared if you click out of it
         clearSelectedCells();
         this.setAttribute("id", "selected-cell");
-        //displayValue = this.firstChild.value;
         // parValue = parseInt(value);
         // if(parValue > 9){
         //   alert(parValue);
@@ -255,9 +240,6 @@ function addEventAndInputFields(){
         else{
           let value;
           value = this.firstChild.value;
-          //need these to display selected cell value in debug div
-          //this.firstChild.setAttribute("value", value);
-          //setDisplayCell(value);
           this.firstChild.id = "unvalidated-user-input";
           for(k = 0; k < 81; k++){
             if(cell[k].firstChild.id == "unvalidated-user-input"){
@@ -270,12 +252,29 @@ function addEventAndInputFields(){
           }
         }
       };
-      // cell[i].onkeyup = function() {
-      //   clearSelectedCells();
-      //   this.setAttribute("id", "selected-cell")
-      //   setDisplayCell();
-      // };
     };
+  }
+}
+
+function setDisplayCell(){
+  var parentEl = document.getElementById("display-answer-key");
+  var answerGridDisplay = setAnswerGridForDisplay();
+  for(i = 0; i < 9; i++){
+    var newEl = document.createElement("span");
+    newEl.innerHTML = answerGridDisplay[i] + "<br>";
+    parentEl.appendChild(newEl);
+  }
+}
+
+function setWinOrLose(solved){
+  if(solved == true){
+    document.getElementById("game-over").style.backgroundColor = "#eee0fe";
+    document.getElementById("win-or-lose").innerHTML = "GAME OVER, YOU WON!" + "<br>";
+    document.getElementById("win-or-lose").style.color = "#7e6cfb";
+    document.getElementById("end-time").innerHTML = "Your time was: " +
+    minutesLabel.innerText + ":" + secondsLabel.innerText + "<br>";
+  }else{
+    document.getElementById("win-or-lose").innerHTML = "GAME OVER, YOU LOSE."
   }
 }
 

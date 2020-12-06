@@ -1,7 +1,7 @@
 var hintsRemaining = 3;
 var mistakesMade = 0;
 var grid;
-var answerGrid;
+var answerGridGlobal;
 var userGrid;
 var isValid;
 var solved;
@@ -12,12 +12,11 @@ function getCell(row, col){
 }
 
 function gameActive(){
-
   if (userGrid.includes(0) == true){
     gameOver = false;
   }else{
     gameOver = true;
-    //solved = true;
+    solved = true;
   }
   if(mistakesMade >= 3){
     gameOver = true;
@@ -27,33 +26,33 @@ function gameActive(){
 function endGame(){
   if(gameOver == true){
     hideGrid();
+    setWinOrLose(solved);
     displayGameOver();
   }
 }
 
-function resumeGame(){
-  //start timer
-}
-
 function useHint(){
   hintsRemaining--;
-  setNextInput();
-}
-
-function setNextInput(){
-  var nextInput;
-  var flatAnswerGrid = answerGrid.flat();
+  let nextInput;
+  let nextIndex;
+  let flatAnswerGrid = answerGrid.flat();
   for(i = 0; i < flatAnswerGrid.length; i++){
-    if (userGrid[i] != 0) {
+    if (userGrid[i] == 0) {
       nextInput = flatAnswerGrid[i];
+      nextIndex = i;
+      userGrid[nextIndex] = nextInput;
       break;
     }
   }
-  return nextInput;
+  return nextIndex + ":" + nextInput;
+}
+
+function setAnswerGridForDisplay(){
+  return answerGrid;
 }
 
 function checkInput(index, userInput){
-  var answer = answerGrid.flat()[index];
+  let answer = answerGrid.flat()[index];
   if(userInput > 9 || userInput < 1){
     isValid = false;
   }
@@ -70,7 +69,7 @@ function checkInput(index, userInput){
 
 //get saved game state from sample_game_state.json
 function getGameState(){
-  var request = new XMLHttpRequest();
+  let request = new XMLHttpRequest();
   request.open("GET", "../sample_game_state.json", false);
   request.send(null);
 
@@ -109,7 +108,7 @@ function getGameGrid(difficulty){
   requestBoard.send();
 
   if(requestBoard.status == 200){
-    var responseJson = JSON.parse(requestBoard.responseText);
+    let responseJson = JSON.parse(requestBoard.responseText);
     grid = responseJson["board"];
     getAnswerGrid(grid);
   }else{
@@ -132,9 +131,9 @@ function getAnswerGrid(grid){
     body: encodeParams(data),
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
   })
-    .then(response => response.json())
+    .then(response => { return response.json();})
     .then(response => answerGrid = response.solution)
+    .then(respone => {return answerGrid})
     .catch(console.warn)
     userGrid = grid.flat();
 }
-
