@@ -12,16 +12,15 @@
   <body onload="hideGrid(); hideGameOver();">
     <h1>Soduku</h1>
     <span id="local-storage"></span>
-    <script type="text/javascript">displayLocalStorage();</script>
     <div id="settingsDiv">
-        <label for="difficulty-level" class="label">Select your difficulty level</label><br><br>
-        <select id="difficulty-level" name="difficulty-level">
-          <option value="easy">Easy</option>
-          <option value="medium">Medium</option>
-          <option value="hard">Hard</option>
-        </select>
-        <br><br>
-        <br><br><br>
+      <label for="difficulty-level" class="label">Select your difficulty level</label><br><br>
+      <select id="difficulty-level" name="difficulty-level">
+        <option value="easy">Easy</option>
+        <option value="medium">Medium</option>
+        <option value="hard">Hard</option>
+      </select>
+      <br><br>
+      <br><br><br>
       <a class="link-button" href="index.html" target="_self">Back</a>
       <button onclick="hideSettings(); setDifficulty(); getGameGrid(difficulty); generateGrid(); displayGrid(); window.setInterval(setTime, 1500);" id="start-game" class="link-button">Start Game!</button>
     </div>
@@ -31,7 +30,7 @@
       <span class="clock">
       <label id="minutes">00</label>:<label id="seconds">00</label>
       </span>
-        <script src="../models/game_state.js"></script>
+      <script src="../models/game_state.js"></script>
       <div id="gridDiv">
       </div>
       <span id="use-hint">?  </span><span>Hints Remaining: </span><span id="hints"></span>
@@ -48,13 +47,13 @@
     </div>
     <!--GAME OVER DIV -->
     <div id="game-over">
-      <br><br>
+      <br><br><br>
       <span id="win-or-lose"></span>
       <span id='end-time'></span>
-      <br>
+      <br><br>
       <a class="link-button" href="game_grid.html" target="_self">New Game</a>
     </div>
-    <br><br><br>
+    <br><br>
     <!-- Debugging Div -->
     <div id="debuggingDiv" style="background-color: white; font-size: 20px;">
       <span>&ltDEBUG&gt</span>

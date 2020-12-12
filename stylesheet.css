@@ -42,6 +42,9 @@ h2{
 h1, h2, #home-title{
   color: #7e6cfb;
 }
+h3{
+  color: darkblue;
+}
 img{
   padding-top: 40px;
   width: 361px;
@@ -53,7 +56,7 @@ input{
   text-decoration: none;
 }
 nav{
-  vertical-align: center;
+  vertical-align: left;
 }
 span{
   color: #6d6868;
@@ -99,7 +102,7 @@ td:hover{
   background-color: white;
 }
 #game-over{
-  height: 400px;
+  height: 600px;
   background-color: #2d2e32;
   font-size: 50px;
   color: #7e6cfb;
@@ -111,14 +114,7 @@ td:hover{
 #hints{
   margin-right: 25%;
 }
-#home-title{
-  text-decoration: none;
-  margin: 0px;
-  text-align: left;
-  font-size: 80px;
-  padding-right: 100px;
-}
-#login{
+/*#login{
   width: 80px;
   border-radius: 15px;
   padding: 5px;
@@ -130,7 +126,7 @@ td:hover{
 }
 #login-message{
   color: red;
-}
+}*/
 #selected-cell{
   background-color: #90caf9;
 }

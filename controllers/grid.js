@@ -13,35 +13,35 @@ function generateGrid(){
   genGrid(gridDiv, 9, 9);
 }
 
-function updateGameState(grid, userGrid){
-  grid = grid.flat();
-  //clear grid
-  for(i = 0; i < 81; i++){
-    cell[i].innerHTML = '';
-  }
-  addEventAndInputFields();
-  for(i = 0; i < 81; i++){
-    if (grid[i] != 0){
-      cell[i].innerHTML = grid[i];
-      cell[i].classList.add("given-number");
-    }
-    //fill in the userGrid input
-    if (userGrid[i] != 0){
-      cell[i].innerHTML = userGrid[i];
-      cell[i].style.color = "blue";
-    }
-  }
+// function updateGameState(grid, userGrid){
+//   grid = grid.flat();
+//   //clear grid
+//   for(i = 0; i < 81; i++){
+//     cell[i].innerHTML = '';
+//   }
+//   addEventAndInputFields();
+//   for(i = 0; i < 81; i++){
+//     if (grid[i] != 0){
+//       cell[i].innerHTML = grid[i];
+//       cell[i].classList.add("given-number");
+//     }
+//     //fill in the userGrid input
+//     if (userGrid[i] != 0){
+//       cell[i].innerHTML = userGrid[i];
+//       cell[i].style.color = "blue";
+//     }
+//   }
 
-  //update difficulty
-  difficultyText = document.getElementById("difficulty");
-  difficultyText.innerHTML = difficulty;
+//   //update difficulty
+//   difficultyText = document.getElementById("difficulty");
+//   difficultyText.innerHTML = difficulty;
 
-  //update hintsRemaining and mistakesMade
-  var hintsDisplay = document.getElementById("hints");
-  var mistakesDisplay = document.getElementById("mistakes");
-  hintsDisplay.innerHTML = hintsRemaining;
-  mistakesDisplay.innerHTML = mistakesMade;
-}
+//   //update hintsRemaining and mistakesMade
+//   var hintsDisplay = document.getElementById("hints");
+//   var mistakesDisplay = document.getElementById("mistakes");
+//   hintsDisplay.innerHTML = hintsRemaining;
+//   mistakesDisplay.innerHTML = mistakesMade;
+// }
 
 function genGrid(gridDiv, rows, columns){
   let newRow;
@@ -120,8 +120,8 @@ function displayGrid() {
       let nextIndex = nextInputDetails[0];
       let nextInput = nextInputDetails[2];
       cell[nextIndex].classList.add("blue-text");
+      cell[nextIndex].style.backgroundColor = "white";
       cell[nextIndex].innerHTML = nextInput;
-      console.log(cell[nextIndex].className);
       document.getElementById("hints").innerHTML = hintsRemaining;
     }
   }
@@ -181,6 +181,7 @@ function pauseGame() {
 
 function resumeGame() {
   totalSeconds = localStorage.getItem("savedTime");
+  document.getElementById("pauseScreenDiv").style.display = "none";
   displayGrid();
 }
 
@@ -192,19 +193,6 @@ function checkValidity(cellInput) {
   }
 }
 
-function changeButtonColor(){
-  var m = 0;
-  var e = document.getElementById("animated-button");
-  colors = ['#f6df94', 'blue', '#edc1f6', '#e87272'];
-  e.style.backgroundColor = colors[m];
-  m = ++m % 4;
-}
-
-function displayLocalStorage() {
-  var localStorageSpan = document.getElementById("local-storage");
-  localStorageSpan.innerHTML = localStorage.getItem("cs2550timestamp");
-}
-
 function addEventAndInputFields(){
   for(i = 0; i < 81; i++){
     var r = Math.floor((i / 9)) + 1;
@@ -212,25 +200,15 @@ function addEventAndInputFields(){
     cell[i].classList.add(`col-${c}`);
     cell[i].classList.add(`row-${r}`);
     if (cell[i].classList.contains("given-number") == false){
-      cell[i].innerHTML = "<input type='number' min='1' max='9' maxlength='1' class='user-input'>";
-      cell[i].onclick = function() {
+      cell[i].innerHTML = "<input type='number' class='user-input'>";
+      cell[i].onclick  = function() {
         var displayValue;
         //allows selected cell to be cleared if you click out of it
         clearSelectedCells();
         this.setAttribute("id", "selected-cell");
-        // parValue = parseInt(value);
-        // if(parValue > 9){
-        //   alert(parValue);
-        //     value = "9";
-        // } else if(parValue < 1){
-        //   value = "1";
-        //   this.firstChild.innerHTML = "1";
-        // }
-        // this.firstChild.setAttribute("id", "unvalidated-user-input");
-        // setDisplayCell();
       }
       cell[i].onkeyup = function() {
-        if(event.keyCode == 8){
+        if(event.keyCode == 8 || event.keyCode == 9 ){
           this.classList.remove("invalid-background");
           this.firstChild.classList.remove("invalid-text");
           if(this.classList.contains("user-input") == false){
@@ -269,7 +247,7 @@ function setDisplayCell(){
 function setWinOrLose(solved){
   if(solved == true){
     document.getElementById("game-over").style.backgroundColor = "#eee0fe";
-    document.getElementById("win-or-lose").innerHTML = "GAME OVER, YOU WON!" + "<br>";
+    document.getElementById("win-or-lose").innerHTML = "YOU WON!" + "<br>";
     document.getElementById("win-or-lose").style.color = "#7e6cfb";
     document.getElementById("end-time").innerHTML = "Your time was: " +
     minutesLabel.innerText + ":" + secondsLabel.innerText + "<br>";
@@ -296,7 +274,6 @@ function setWinOrLose(solved){
 //     }
 //     for(j = 0; j < column; j++){
 //      var content = getCell(i, j);
-//      console.log("row: " + i + " column: " + j + " content: " + content);
 //       if ((j + 1) % 3 == 0 && j != 8){
 //         html += "<td class='right-bold'>";
 //         html += "</td>";

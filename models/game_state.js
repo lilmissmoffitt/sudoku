@@ -18,7 +18,7 @@ function gameActive(){
     gameOver = true;
     solved = true;
   }
-  if(mistakesMade >= 3){
+  if(mistakesMade > 3){
     gameOver = true;
   }
 }
@@ -84,18 +84,6 @@ function getGameState(){
     gameActive(userGrid);
     endGame();
   }
-}
-
-//update variables for saved state
-function updateVariables(responseJson){
-  difficulty     = responseJson["difficulty"];
-  grid           = responseJson["grid"];
-  answerGrid     = responseJson["answerGrid"];
-  userGrid       = responseJson["userGrid"];
-  hintsRemaining = responseJson["hintsRemaining"];
-  mistakesMade   = responseJson["mistakesMade"];
-  gameOver       = responseJson["gameOver"];
-  totalSeconds   = responseJson["totalSeconds"];
 }
 
 //get sudoku board from https://github.com/berto/sugoku#get
