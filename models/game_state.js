@@ -88,7 +88,7 @@ function getGameState(){
 
 //get sudoku board from https://github.com/berto/sugoku#get
 function getGameGrid(difficulty){
-  var url = "https://sugoku.herokuapp.com/board";
+  var url = "https://sugoku.onrender.com/board";
   var difficultyData = "?difficulty=" + difficulty;
   var requestBoard = new XMLHttpRequest();
   requestBoard.open("GET", url + difficultyData, false);
@@ -114,7 +114,7 @@ function getAnswerGrid(grid){
   const data = {
     board: grid
   }
-  fetch('https://sugoku.herokuapp.com/solve', {
+  fetch('https://sugoku.onrender.com/solve', {
     method: 'POST',
     body: encodeParams(data),
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
