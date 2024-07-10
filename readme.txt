@@ -1,3 +1,4 @@
+Public URL: https://lilmissmoffitt.github.io/sudoku/views/index.html
 
 When on the game_grid page : http://127.0.0.1:8887/views/game_grid.html you can click 'Load Game State' and that will send the GET request and retrieve the JSON object located in sudoku_project/sample_game_state.json.
 
